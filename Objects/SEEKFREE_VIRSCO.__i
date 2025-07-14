@@ -1,0 +1,1 @@
+"Libraries\seekfree_peripheral\SEEKFREE_VIRSCO.c" XSMALL BROWSE INCDIR(.\Libraries\libraries;.\Libraries\seekfree_components;.\Libraries\seekfree_libraries;.\Libraries\seekfree_peripheral;.\Inc) DEBUG PRINT(.\Listings\SEEKFREE_VIRSCO.lst) TABS (2) OBJECT(.\Objects\SEEKFREE_VIRSCO.obj)

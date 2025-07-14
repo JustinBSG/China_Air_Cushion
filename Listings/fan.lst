@@ -1,0 +1,53 @@
+C251 COMPILER V5.60.0,  fan                                                                14/07/25  20:18:11  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE fan
+OBJECT MODULE PLACED IN .\Objects\fan.obj
+COMPILER INVOKED BY: C:\Keil_v5\C251\BIN\C251.EXE Src\fan.c XSMALL BROWSE INCDIR(.\Libraries\libraries;.\Libraries\seekf
+                    -ree_components;.\Libraries\seekfree_libraries;.\Libraries\seekfree_peripheral;.\Inc) DEBUG PRINT(.\Listings\fan.lst) TAB
+                    -S(2) OBJECT(.\Objects\fan.obj) 
+
+stmt  level    source
+
+    1          #include "fan.h"
+    2          
+    3          Fan test_fan = {FAN_0_SPEED_PWM, PWMA_CH4P_P66};
+    4          
+    5          void initial_all_fan(void) {
+    6   1        pwm_init(PWMA_CH4P_P66, FAN_FREQ, 0);
+    7   1        pwm_duty(PWMA_CH4P_P66, FAN_0_SPEED_PWM);
+    8   1      }
+    9          
+   10          void fan_set_speed(Fan *fan, int speed) {
+   11   1        if (speed < FAN_0_SPEED_PWM)
+   12   1          speed = FAN_0_SPEED_PWM;
+   13   1        else if (speed > FAN_FULL_SPEED_PWM)
+   14   1          speed = FAN_FULL_SPEED_PWM;
+   15   1      
+   16   1        pwm_duty(fan->pin, speed);
+   17   1        fan->speed = speed;
+   18   1      }
+
+
+Module Information          Static   Overlayable
+------------------------------------------------
+  code size            =       106     ------
+  ecode size           =    ------     ------
+  data size            =    ------     ------
+  idata size           =    ------     ------
+  pdata size           =    ------     ------
+  xdata size           =    ------     ------
+  xdata-const size     =    ------     ------
+  edata size           =         4          4
+  bit size             =    ------     ------
+  ebit size            =    ------     ------
+  bitaddressable size  =    ------     ------
+  ebitaddressable size =    ------     ------
+  far data size        =    ------     ------
+  huge data size       =    ------     ------
+  const size           =    ------     ------
+  hconst size          =         8     ------
+End of Module Information.
+
+
+C251 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

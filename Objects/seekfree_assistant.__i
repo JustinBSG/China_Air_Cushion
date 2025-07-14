@@ -1,0 +1,1 @@
+"Libraries\seekfree_components\seekfree_assistant.c" XSMALL BROWSE INCDIR(.\Libraries\libraries;.\Libraries\seekfree_components;.\Libraries\seekfree_libraries;.\Libraries\seekfree_peripheral;.\Inc) DEBUG PRINT(.\Listings\seekfree_assistant.lst) TABS (2) OBJECT(.\Objects\seekfree_assistant.obj)

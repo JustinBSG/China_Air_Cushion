@@ -1,0 +1,77 @@
+C251 COMPILER V5.60.0,  main                                                               14/07/25  20:18:11  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE main
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: C:\Keil_v5\C251\BIN\C251.EXE Src\main.c XSMALL BROWSE INCDIR(.\Libraries\libraries;.\Libraries\seek
+                    -free_components;.\Libraries\seekfree_libraries;.\Libraries\seekfree_peripheral;.\Inc) DEBUG PRINT(.\Listings\main.lst) T
+                    -ABS(2) OBJECT(.\Objects\main.obj) 
+
+stmt  level    source
+
+    1          #include "Libraries/seekfree_peripheral/headfile.h" // lib provided by Taobao
+    2          #include "main.h"
+    3          #include "fan.h"
+    4          
+    5          #define KEY4_PIN P73
+    6          #define BUZZER P67
+    7          
+    8          uint8 key4_status = 1; // set default button status
+    9          uint8 key4_previous_status;
+   10          
+   11          void main()
+   12          {
+   13   1        board_init(); // init board
+   14   1      
+   15   1        BUZZER = 0;              // set default output for buzzer
+   16   1        gpio_mode(P6_7, GPO_PP); // set pin p6.7 as push pull mode for large current (>20mA), note all pin defa
+             -ult to be standard gpio
+   17   1      
+   18   1        // pwm_init(TEST_PWM, 50, 0);
+   19   1        // pwm_duty(TEST_PWM, PWM_DUTY_MAX*0.05*2);
+   20   1        initial_all_fan();
+   21   1        // fan_set_speed(&test_fan, FAN_0_SPEED_PWM);
+   22   1      
+   23   1        while (1)
+   24   1        {
+   25   2          key4_previous_status = key4_status;
+   26   2          key4_status = KEY4_PIN; // read button
+   27   2      
+   28   2          if (key4_previous_status && !key4_status) // capured falling edge
+   29   2          {
+   30   3            delay_ms(10); // debounce
+   31   3            key4_status = KEY4_PIN;
+   32   3            
+   33   3            if (!key4_status)
+   34   3            {
+   35   4              BUZZER = !BUZZER; // turn on/off the buzzer
+   36   4            }
+   37   3          }
+   38   2        }
+   39   1      }
+
+
+Module Information          Static   Overlayable
+------------------------------------------------
+  code size            =        79     ------
+  ecode size           =    ------     ------
+  data size            =    ------     ------
+  idata size           =    ------     ------
+  pdata size           =    ------     ------
+  xdata size           =    ------     ------
+  xdata-const size     =    ------     ------
+  edata size           =         2     ------
+  bit size             =    ------     ------
+  ebit size            =    ------     ------
+  bitaddressable size  =    ------     ------
+  ebitaddressable size =    ------     ------
+  far data size        =    ------     ------
+  huge data size       =    ------     ------
+C251 COMPILER V5.60.0,  main                                                               14/07/25  20:18:11  PAGE 2   
+
+  const size           =    ------     ------
+  hconst size          =         5     ------
+End of Module Information.
+
+
+C251 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
