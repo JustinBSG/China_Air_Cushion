@@ -7,6 +7,8 @@
 
 uint8 key4_status = 1; // set default button status
 uint8 key4_previous_status;
+char buf[20];
+uint8 count = 0;
 
 void main()
 {
@@ -20,20 +22,25 @@ void main()
   initial_all_fan();
   // fan_set_speed(&test_fan, FAN_0_SPEED_PWM);
 
+  uart_init(UART_2, UART2_RX_P10, UART2_TX_P11, 115200, TIM_2);
+
   while (1)
   {
-    key4_previous_status = key4_status;
-    key4_status = KEY4_PIN; // read button
+    // key4_previous_status = key4_status;
+    // key4_status = KEY4_PIN; // read button
 
-    if (key4_previous_status && !key4_status) // capured falling edge
-    {
-      delay_ms(10); // debounce
-      key4_status = KEY4_PIN;
+    // if (key4_previous_status && !key4_status) // capured falling edge
+    // {
+    //   delay_ms(10); // debounce
+    //   key4_status = KEY4_PIN;
       
-      if (!key4_status)
-      {
-        BUZZER = !BUZZER; // turn on/off the buzzer
-      }
-    }
+    //   if (!key4_status)
+    //   {
+    //     BUZZER = !BUZZER; // turn on/off the buzzer
+    //   }
+    // }
+    sprintf(buf, "count = %d\n", count++);
+    uart_putbuff(UART_2, buf, strlen(buf));
+    delay_ms(1000);
   }
 }
