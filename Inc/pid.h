@@ -6,6 +6,8 @@
 #include "imu.h"
 #include "fan.h"
 
+#define PID_MIN_INTERVAL 10 // Minimum interval for PID tasks in milliseconds
+
 typedef struct {
   float kp;
   float ki;
