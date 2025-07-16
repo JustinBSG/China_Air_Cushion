@@ -22,6 +22,7 @@ extern float acc_x_err, acc_y_err, acc_z_err; // accelerometer error
 extern float gyro_x_err, gyro_y_err, gyro_z_err; // gyroscope error
 
 void imu660ra_cali(void);
-void imu660ra_get_data(void);
+
+void imu660ra_get_data(IMUData *imu_data);
 
 #endif // __IMU_H__

@@ -59,7 +59,7 @@ void imu660ra_cali(void) {
   gyro_z_err = gyro_z_est;
 }
 
-void imu660ra_get_data(void) {
+void imu660ra_get_data(IMUData *imu_data) {
   imu660ra_get_acc(); // get accelerometer data
   imu660ra_get_gyro(); // get gyroscope data
   acc_x = imu660ra_acc_transition(imu660ra_acc_x); // convert to physical data
@@ -69,10 +69,10 @@ void imu660ra_get_data(void) {
   gyro_y = imu660ra_gyro_transition(imu660ra_gyro_y);
   gyro_z = imu660ra_gyro_transition(imu660ra_gyro_z);
 
-  imu_data.x_acc = acc_x - acc_x_err;
-  imu_data.y_acc = acc_y - acc_y_err;
-  imu_data.z_acc = acc_z - acc_z_err;
-  imu_data.x_gyro = gyro_x - gyro_x_err;
-  imu_data.y_gyro = gyro_y - gyro_y_err;
-  imu_data.z_gyro = gyro_z - gyro_z_err;
+  imu_data->x_acc = acc_x - acc_x_err;
+  imu_data->y_acc = acc_y - acc_y_err;
+  imu_data->z_acc = acc_z - acc_z_err;
+  imu_data->x_gyro = gyro_x - gyro_x_err;
+  imu_data->y_gyro = gyro_y - gyro_y_err;
+  imu_data->z_gyro = gyro_z - gyro_z_err;
 }

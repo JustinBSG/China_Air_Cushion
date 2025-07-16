@@ -44,7 +44,6 @@ void main() {
     //     BUZZER = !BUZZER; // turn on/off the buzzer
     //   }
     // }
-    imu660ra_get_data(); // get imu data
 
     sprintf(buf, "acc_x: %.2f g, acc_y: %.2f g, acc_z: %.2f g, gyro_x: %.2f °/s, gyro_y: %.2f °/s, gyro_z: %.2f °/s\n",
         imu_data.x_acc, imu_data.y_acc, imu_data.z_acc, imu_data.x_gyro, imu_data.y_gyro, imu_data.z_gyro);
