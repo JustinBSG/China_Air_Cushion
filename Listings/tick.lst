@@ -1,0 +1,46 @@
+C251 COMPILER V5.60.0,  tick                                                               15/07/25  22:10:02  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE tick
+OBJECT MODULE PLACED IN .\Objects\tick.obj
+COMPILER INVOKED BY: C:\Keil_v5\C251\BIN\C251.EXE Src\tick.c XSMALL BROWSE INCDIR(.\Libraries\libraries;.\Libraries\seek
+                    -free_components;.\Libraries\seekfree_libraries;.\Libraries\seekfree_peripheral;.\Inc) DEBUG PRINT(.\Listings\tick.lst) T
+                    -ABS(2) OBJECT(.\Objects\tick.obj) 
+
+stmt  level    source
+
+    1          #include "tick.h"
+    2          
+    3          uint32 tick = 0;
+    4          
+    5          void tick_init(void) {
+    6   1        pit_timer_ms(TICK_TIM, 1);
+    7   1      }
+    8          
+    9          uint32 get_tick(void) {
+   10   1        return tick;
+   11   1      }
+
+
+Module Information          Static   Overlayable
+------------------------------------------------
+  code size            =        14     ------
+  ecode size           =    ------     ------
+  data size            =    ------     ------
+  idata size           =    ------     ------
+  pdata size           =    ------     ------
+  xdata size           =    ------     ------
+  xdata-const size     =    ------     ------
+  edata size           =         4     ------
+  bit size             =    ------     ------
+  ebit size            =    ------     ------
+  bitaddressable size  =    ------     ------
+  ebitaddressable size =    ------     ------
+  far data size        =    ------     ------
+  huge data size       =    ------     ------
+  const size           =    ------     ------
+  hconst size          =         8     ------
+End of Module Information.
+
+
+C251 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

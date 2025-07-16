@@ -334,6 +334,21 @@
               <FileType>1</FileType>
               <FilePath>.\Src\fan.c</FilePath>
             </File>
+            <File>
+              <FileName>isr.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Src\isr.c</FilePath>
+            </File>
+            <File>
+              <FileName>tick.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Src\tick.c</FilePath>
+            </File>
+            <File>
+              <FileName>imu.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Src\imu.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -348,6 +363,21 @@
               <FileName>fan.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Inc\fan.h</FilePath>
+            </File>
+            <File>
+              <FileName>isr.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Inc\isr.h</FilePath>
+            </File>
+            <File>
+              <FileName>tick.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Inc\tick.h</FilePath>
+            </File>
+            <File>
+              <FileName>imu.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Inc\imu.h</FilePath>
             </File>
           </Files>
         </Group>

@@ -19,12 +19,15 @@ CPU DLL:         S251.DLL V3.129.0.0
 Dialog DLL:      DCORE51.DLL V2.81.6.0 
 <h2>Project:</h2>
 C:\Users\justin\Documents\Program\robotics_team\China\air_cushion\demo.uvproj
-Project File Date:  07/14/2025
+Project File Date:  07/15/2025
 
 <h2>Output:</h2>
 Rebuild target 'Target_1'
 compiling main.c...
 compiling fan.c...
+compiling isr.c...
+compiling tick.c...
+compiling imu.c...
 compiling board.c...
 compiling common.c...
 compiling zf_adc.c...
@@ -61,6 +64,10 @@ compiling seekfree_assistant_inface.c...
 linking...
 *** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
     NAME:    fan_set_speed/fan
+*** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
+    NAME:    tick_init/tick
+*** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
+    NAME:    get_tick/tick
 *** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
     NAME:    DisableGlobalIRQ/board
 *** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
@@ -189,16 +196,6 @@ linking...
     NAME:    icm20602_acc_transition/SEEKFREE_ICM20602
 *** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
     NAME:    icm20602_get_gyro/SEEKFREE_ICM20602
-*** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
-    NAME:    imu660ra_get_gyro/SEEKFREE_IMU660RA
-*** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
-    NAME:    imu660ra_gyro_transition/SEEKFREE_IMU660RA
-*** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
-    NAME:    imu660ra_init/SEEKFREE_IMU660RA
-*** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
-    NAME:    imu660ra_get_acc/SEEKFREE_IMU660RA
-*** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
-    NAME:    imu660ra_acc_transition/SEEKFREE_IMU660RA
 *** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
     NAME:    imu963ra_acc_transition/SEEKFREE_IMU963RA
 *** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
@@ -329,10 +326,10 @@ linking...
     NAME:    seekfree_assistant_data_analysis/seekfree_assistant
 *** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
     NAME:    seekfree_assistant_camera_send/seekfree_assistant
-Program Size: data=8.0 edata+hdata=2266 xdata=1646 const=1111 code=54262
+Program Size: data=8.0 edata+hdata=2574 xdata=1637 const=1331 code=55431
 creating hex file from ".\Objects\demo"...
-".\Objects\demo" - 0 Error(s), 135 Warning(s).
-Build Time Elapsed:  00:00:05
+".\Objects\demo" - 0 Error(s), 132 Warning(s).
+Build Time Elapsed:  00:00:06
 </pre>
 </body>
 </html>

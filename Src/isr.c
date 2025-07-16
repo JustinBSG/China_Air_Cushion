@@ -1,24 +1,25 @@
 ///*********************************************************************************************************************
 // * COPYRIGHT NOTICE
-// * Copyright (c) 2020,Öð·É¿Æ¼¼
+// * Copyright (c) 2020,ï¿½ï¿½É¿Æ¼ï¿½
 // * All rights reserved.
-// * ¼¼ÊõÌÖÂÛQQÈº£ºÒ»Èº£º179029047(ÒÑÂú)  ¶þÈº£º244861897(ÒÑÂú)  ÈýÈº£º824575535
+// * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½QQÈºï¿½ï¿½Ò»Èºï¿½ï¿½179029047(ï¿½ï¿½ï¿½ï¿½)  ï¿½ï¿½Èºï¿½ï¿½244861897(ï¿½ï¿½ï¿½ï¿½)  ï¿½ï¿½Èºï¿½ï¿½824575535
 // *
-// * ÒÔÏÂËùÓÐÄÚÈÝ°æÈ¨¾ùÊôÖð·É¿Æ¼¼ËùÓÐ£¬Î´¾­ÔÊÐí²»µÃÓÃÓÚÉÌÒµÓÃÍ¾£¬
-// * »¶Ó­¸÷Î»Ê¹ÓÃ²¢´«²¥±¾³ÌÐò£¬ÐÞ¸ÄÄÚÈÝÊ±±ØÐë±£ÁôÖð·É¿Æ¼¼µÄ°æÈ¨ÉùÃ÷¡£
+// * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý°ï¿½È¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¿Æ¼ï¿½ï¿½ï¿½ï¿½Ð£ï¿½Î´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òµï¿½ï¿½Í¾ï¿½ï¿½
+// * ï¿½ï¿½Ó­ï¿½ï¿½Î»Ê¹ï¿½Ã²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Þ¸ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ë±£ï¿½ï¿½ï¿½ï¿½É¿Æ¼ï¿½ï¿½Ä°ï¿½È¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 // *
 // * @file       		isr
-// * @company	   		³É¶¼Öð·É¿Æ¼¼ÓÐÏÞ¹«Ë¾
-// * @author     		Öð·É¿Æ¼¼(QQ790875685)
-// * @version    		²é¿´docÄÚversionÎÄ¼þ °æ±¾ËµÃ÷
+// * @company	   		ï¿½É¶ï¿½ï¿½ï¿½É¿Æ¼ï¿½ï¿½ï¿½ï¿½Þ¹ï¿½Ë¾
+// * @author     		ï¿½ï¿½É¿Æ¼ï¿½(QQ790875685)
+// * @version    		ï¿½é¿´docï¿½ï¿½versionï¿½Ä¼ï¿½ ï¿½æ±¾Ëµï¿½ï¿½
 // * @Software 			MDK FOR C251 V5.60
 // * @Target core		STC32G12K128
 // * @Taobao   			https://seekfree.taobao.com/
 // * @date       		2020-4-14
 // ********************************************************************************************************************/
 #include "headfile.h"
+#include "tick.h"
 
-//UART1ÖÐ¶Ï
+//UART1ï¿½Ð¶ï¿½
 void UART1_Isr() interrupt 4
 {
     uint8 res;
@@ -32,7 +33,7 @@ void UART1_Isr() interrupt 4
     {
         UART1_CLEAR_RX_FLAG;
         res = SBUF;
-        //³ÌÐò×Ô¶¯ÏÂÔØ
+        //ï¿½ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½
         if(res == 0x7F)
         {
             if(dwon_count++ > 20)
@@ -45,7 +46,7 @@ void UART1_Isr() interrupt 4
     }
 }
 
-//UART2ÖÐ¶Ï
+//UART2ï¿½Ð¶ï¿½
 void UART2_Isr() interrupt 8
 {
     if(UART2_GET_TX_FLAG)
@@ -56,13 +57,13 @@ void UART2_Isr() interrupt 8
     if(UART2_GET_RX_FLAG)
 	{
         UART2_CLEAR_RX_FLAG;
-		//½ÓÊÕÊý¾Ý¼Ä´æÆ÷Îª£ºS2BUF
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¼Ä´ï¿½ï¿½ï¿½Îªï¿½ï¿½S2BUF
 
 	}
 }
 
 
-//UART3ÖÐ¶Ï
+//UART3ï¿½Ð¶ï¿½
 void UART3_Isr() interrupt 17
 {
     if(UART3_GET_TX_FLAG)
@@ -73,13 +74,13 @@ void UART3_Isr() interrupt 17
     if(UART3_GET_RX_FLAG)
 	{
         UART3_CLEAR_RX_FLAG;
-		//½ÓÊÕÊý¾Ý¼Ä´æÆ÷Îª£ºS3BUF
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¼Ä´ï¿½ï¿½ï¿½Îªï¿½ï¿½S3BUF
 
 	}
 }
 
 
-//UART4ÖÐ¶Ï
+//UART4ï¿½Ð¶ï¿½
 void UART4_Isr() interrupt 18
 {
     if(UART4_GET_TX_FLAG)
@@ -91,11 +92,11 @@ void UART4_Isr() interrupt 18
 	{
         UART4_CLEAR_RX_FLAG;
 
-		//½ÓÊÕÊý¾Ý¼Ä´æÆ÷Îª£ºS4BUF;
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¼Ä´ï¿½ï¿½ï¿½Îªï¿½ï¿½S4BUF;
 		if(wireless_module_uart_handler != NULL)
 		{
-			// ¸Ãº¯ÊýÎªº¯ÊýÖ¸Õë
-			// ÔÙ³õÊ¼»¯ÎÞÏßÄ£¿éµÄÊ±ºò£¬ÉèÖÃ¸Ãº¯ÊýµØÖ·
+			// ï¿½Ãºï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½
+			// ï¿½Ù³ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä£ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Ã¸Ãºï¿½ï¿½ï¿½ï¿½ï¿½Ö·
 			wireless_module_uart_handler(S4BUF);
 		}
 	}
@@ -104,7 +105,7 @@ void UART4_Isr() interrupt 18
 #define LED P52
 void INT0_Isr() interrupt 0
 {
-	LED = 0;	//µãÁÁLED
+	LED = 0;	//ï¿½ï¿½ï¿½ï¿½LED
 }
 void INT1_Isr() interrupt 2
 {
@@ -112,21 +113,21 @@ void INT1_Isr() interrupt 2
 }
 void INT2_Isr() interrupt 10
 {
-	INT2_CLEAR_FLAG;  //Çå³ýÖÐ¶Ï±êÖ¾
+	INT2_CLEAR_FLAG;  //ï¿½ï¿½ï¿½ï¿½Ð¶Ï±ï¿½Ö¾
 }
 void INT3_Isr() interrupt 11
 {
-	INT3_CLEAR_FLAG;  //Çå³ýÖÐ¶Ï±êÖ¾
+	INT3_CLEAR_FLAG;  //ï¿½ï¿½ï¿½ï¿½Ð¶Ï±ï¿½Ö¾
 }
 
 void INT4_Isr() interrupt 16
 {
-	INT4_CLEAR_FLAG;  //Çå³ýÖÐ¶Ï±êÖ¾
+	INT4_CLEAR_FLAG;  //ï¿½ï¿½ï¿½ï¿½Ð¶Ï±ï¿½Ö¾
 }
 
 void TM0_Isr() interrupt 1
 {
-
+  tick++;
 }
 void TM1_Isr() interrupt 3
 {
@@ -134,19 +135,19 @@ void TM1_Isr() interrupt 3
 }
 void TM2_Isr() interrupt 12
 {
-	TIM2_CLEAR_FLAG;  //Çå³ýÖÐ¶Ï±êÖ¾
+	TIM2_CLEAR_FLAG;  //ï¿½ï¿½ï¿½ï¿½Ð¶Ï±ï¿½Ö¾
 	
 }
 void TM3_Isr() interrupt 19
 {
-	TIM3_CLEAR_FLAG; //Çå³ýÖÐ¶Ï±êÖ¾
+	TIM3_CLEAR_FLAG; //ï¿½ï¿½ï¿½ï¿½Ð¶Ï±ï¿½Ö¾
 	
 }
 
 void TM4_Isr() interrupt 20
 {
-	TIM4_CLEAR_FLAG; //Çå³ýÖÐ¶Ï±êÖ¾
-//	ccd_collect();	 //CCD²É¼¯Êý¾Ý
+	TIM4_CLEAR_FLAG; //ï¿½ï¿½ï¿½ï¿½Ð¶Ï±ï¿½Ö¾
+//	ccd_collect();	 //CCDï¿½É¼ï¿½ï¿½ï¿½ï¿½ï¿½
 
 }
 

@@ -1,4 +1,4 @@
-C251 COMPILER V5.60.0,  SEEKFREE_ICM20602                                                  14/07/25  20:18:13  PAGE 1   
+C251 COMPILER V5.60.0,  SEEKFREE_ICM20602                                                  15/07/25  22:10:05  PAGE 1   
 
 
 C251 COMPILER V5.60.0, COMPILATION OF MODULE SEEKFREE_ICM20602
@@ -66,7 +66,7 @@ stmt  level    source
                
                #define ICM20602_SCL_LOW()          ICM20602_SCL_PIN = 0    //IO¿ÚÊä³öµÍµçÆ½
                #define ICM20602_SCL_HIGH()         ICM20602_SCL_PIN = 1    //IO¿ÚÊä³ö¸ßµçÆ½
-C251 COMPILER V5.60.0,  SEEKFREE_ICM20602                                                  14/07/25  20:18:13  PAGE 2   
+C251 COMPILER V5.60.0,  SEEKFREE_ICM20602                                                  15/07/25  22:10:05  PAGE 2   
 
                
                #define ack 1      //Ö÷Ó¦´ð
@@ -134,7 +134,7 @@ stmt  level    source
                    {
                        ICM20602_SCL_LOW();
                        return 0;
-C251 COMPILER V5.60.0,  SEEKFREE_ICM20602                                                  14/07/25  20:18:13  PAGE 3   
+C251 COMPILER V5.60.0,  SEEKFREE_ICM20602                                                  15/07/25  22:10:05  PAGE 3   
 
                    }
                    ICM20602_SCL_LOW();
@@ -202,7 +202,7 @@ stmt  level    source
                //  @param      dat       Ð´ÈëµÄÊý¾Ý
                //  @return     void
                //  @since      v1.0
-C251 COMPILER V5.60.0,  SEEKFREE_ICM20602                                                  14/07/25  20:18:13  PAGE 4   
+C251 COMPILER V5.60.0,  SEEKFREE_ICM20602                                                  15/07/25  22:10:05  PAGE 4   
 
                //  Sample usage:
                //-------------------------------------------------------------------------------------------------------
@@ -270,7 +270,7 @@ stmt  level    source
                }
                
                #define icm20602_write_register(reg, dat)        (icm20602_simiic_write_reg(ICM20602_DEV_ADDR, (reg), (da
-C251 COMPILER V5.60.0,  SEEKFREE_ICM20602                                                  14/07/25  20:18:13  PAGE 5   
+C251 COMPILER V5.60.0,  SEEKFREE_ICM20602                                                  15/07/25  22:10:05  PAGE 5   
 
              -t)))
                #define icm20602_write_registers(reg, dat, len)  (icm20602_simiic_write_regs(ICM20602_DEV_ADDR, (reg), (d
@@ -338,7 +338,7 @@ stmt  level    source
              -------------
   301          //static void icm20602_simspi_w_reg_bytes(uint8 cmd, uint8 *dat_addr, uint32 len)
   302          //{
-C251 COMPILER V5.60.0,  SEEKFREE_ICM20602                                                  14/07/25  20:18:13  PAGE 6   
+C251 COMPILER V5.60.0,  SEEKFREE_ICM20602                                                  15/07/25  22:10:05  PAGE 6   
 
   303          
   304          //
@@ -406,7 +406,7 @@ stmt  level    source
   360   1          icm20602_simspi_w_reg_byte(reg | ICM20602_SPI_W, dat);
   361   1          ICM20602_CS(1);
   362   1      }
-C251 COMPILER V5.60.0,  SEEKFREE_ICM20602                                                  14/07/25  20:18:13  PAGE 7   
+C251 COMPILER V5.60.0,  SEEKFREE_ICM20602                                                  15/07/25  22:10:05  PAGE 7   
 
   363          
   364          //-------------------------------------------------------------------------------------------------------
@@ -474,7 +474,7 @@ stmt  level    source
   418          // Ê¹ÓÃÊ¾Àý     icm20602_self_check();
   419          // ±¸×¢ÐÅÏ¢     ÄÚ²¿µ÷ÓÃ
   420          //-------------------------------------------------------------------------------------------------------
-C251 COMPILER V5.60.0,  SEEKFREE_ICM20602                                                  14/07/25  20:18:13  PAGE 8   
+C251 COMPILER V5.60.0,  SEEKFREE_ICM20602                                                  15/07/25  22:10:05  PAGE 8   
 
              -------------
   421          static uint8 icm20602_self_check (void)
@@ -542,7 +542,7 @@ stmt  level    source
   476          //-------------------------------------------------------------------------------------------------------
              -------------
   477          float icm20602_acc_transition (int16 acc_value)
-C251 COMPILER V5.60.0,  SEEKFREE_ICM20602                                                  14/07/25  20:18:13  PAGE 9   
+C251 COMPILER V5.60.0,  SEEKFREE_ICM20602                                                  15/07/25  22:10:05  PAGE 9   
 
   478          {
   479   1          float acc_data = 0;
@@ -610,7 +610,7 @@ stmt  level    source
              -------------
   531          // º¯Êý¼ò½é     ³õÊ¼»¯ ICM20602
   532          // ²ÎÊýËµÃ÷     void
-C251 COMPILER V5.60.0,  SEEKFREE_ICM20602                                                  14/07/25  20:18:13  PAGE 10  
+C251 COMPILER V5.60.0,  SEEKFREE_ICM20602                                                  15/07/25  22:10:05  PAGE 10  
 
   533          // ·µ»Ø²ÎÊý     uint8 xdata           1-³õÊ¼»¯Ê§°Ü 0-³õÊ¼»¯³É¹¦
   534          // Ê¹ÓÃÊ¾Àý     icm20602_init();
@@ -678,7 +678,7 @@ stmt  level    source
   591   2              // ÉèÖÃÎª:0x18 ÍÓÂÝÒÇÁ¿³ÌÎª:¡À2000dps     »ñÈ¡µ½µÄÍÓÂÝÒÇÊý¾Ý³ýÒÔ16.4          ¿ÉÒÔ×ª»¯Îª´øÎïÀíµ¥Î
              -»µÄÊý¾Ý£¬µ¥Î»Îª£º¡ã/s
   592   2              icm20602_write_register(ICM20602_ACCEL_CONFIG,   ICM20602_ACC_SAMPLE);  // ¡À8g
-C251 COMPILER V5.60.0,  SEEKFREE_ICM20602                                                  14/07/25  20:18:13  PAGE 11  
+C251 COMPILER V5.60.0,  SEEKFREE_ICM20602                                                  15/07/25  22:10:05  PAGE 11  
 
   593   2              // ICM20602_ACCEL_CONFIG¼Ä´æÆ÷
   594   2              // ÉèÖÃÎª:0x00 ¼ÓËÙ¶È¼ÆÁ¿³ÌÎª:¡À2g          »ñÈ¡µ½µÄ¼ÓËÙ¶È¼ÆÊý¾Ý ³ýÒÔ16384      ¿ÉÒÔ×ª»¯Îª´øÎïÀíµ

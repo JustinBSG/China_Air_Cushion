@@ -1,5 +1,8 @@
 ".\Objects\main.obj",
 ".\Objects\fan.obj",
+".\Objects\isr.obj",
+".\Objects\tick.obj",
+".\Objects\imu.obj",
 ".\Objects\board.obj",
 ".\Objects\common.obj",
 ".\Objects\zf_adc.obj",

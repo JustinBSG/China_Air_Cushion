@@ -1,4 +1,4 @@
-C251 COMPILER V5.60.0,  SEEKFREE_WIRELESS                                                  14/07/25  20:18:14  PAGE 1   
+C251 COMPILER V5.60.0,  SEEKFREE_WIRELESS                                                  15/07/25  22:10:06  PAGE 1   
 
 
 C251 COMPILER V5.60.0, COMPILATION OF MODULE SEEKFREE_WIRELESS
@@ -66,7 +66,7 @@ stmt  level    source
    51          
    52          //-------------------------------------------------------------------------------------------------------
              -------------
-C251 COMPILER V5.60.0,  SEEKFREE_WIRELESS                                                  14/07/25  20:18:14  PAGE 2   
+C251 COMPILER V5.60.0,  SEEKFREE_WIRELESS                                                  15/07/25  22:10:06  PAGE 2   
 
    53          //  @brief      无线转串口模块发送一个字节
    54          //  @param      dat   需要发送的字节长度
@@ -134,7 +134,7 @@ stmt  level    source
   111          //  @return     uint32          实际读取字节数
   112          //  Sample usage:
   113          //-------------------------------------------------------------------------------------------------------
-C251 COMPILER V5.60.0,  SEEKFREE_WIRELESS                                                  14/07/25  20:18:14  PAGE 3   
+C251 COMPILER V5.60.0,  SEEKFREE_WIRELESS                                                  15/07/25  22:10:06  PAGE 3   
 
              -------------
   114          uint32 wireless_uart_read_buff (uint8 *buff, uint32 len)

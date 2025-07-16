@@ -1,4 +1,4 @@
-C251 COMPILER V5.60.0,  SEEKFREE_BLE6A20                                                   14/07/25  20:18:13  PAGE 1   
+C251 COMPILER V5.60.0,  SEEKFREE_BLE6A20                                                   15/07/25  22:10:04  PAGE 1   
 
 
 C251 COMPILER V5.60.0, COMPILATION OF MODULE SEEKFREE_BLE6A20
@@ -66,7 +66,7 @@ stmt  level    source
    51          
    52          //-------------------------------------------------------------------------------------------------------
              -------------
-C251 COMPILER V5.60.0,  SEEKFREE_BLE6A20                                                   14/07/25  20:18:13  PAGE 2   
+C251 COMPILER V5.60.0,  SEEKFREE_BLE6A20                                                   15/07/25  22:10:04  PAGE 2   
 
    53          //  @brief      ble6a20蓝牙模块发送一个字节
    54          //  @param      dat   需要发送的字节长度
@@ -134,7 +134,7 @@ stmt  level    source
   111          //  @return     uint32          实际读取字节数
   112          //  Sample usage:
   113          //-------------------------------------------------------------------------------------------------------
-C251 COMPILER V5.60.0,  SEEKFREE_BLE6A20                                                   14/07/25  20:18:13  PAGE 3   
+C251 COMPILER V5.60.0,  SEEKFREE_BLE6A20                                                   15/07/25  22:10:04  PAGE 3   
 
              -------------
   114          uint32 ble6a20_read_buff (uint8 *buff, uint32 len)
