@@ -1,4 +1,5 @@
 #include "fan.h"
+
 // TODO: Add array of 6 fans
 Fan test_fan = {FAN_0_SPEED_PWM, PWMA_CH4P_P66};
 
