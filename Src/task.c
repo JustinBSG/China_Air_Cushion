@@ -15,11 +15,13 @@ void task1(void) {
       break;
     case 1:
       // rotate 180 degree
+      // maybe use hmc to get angle
+      // maybe use pid to control fan speed to rotate
       break;
     case 2:
       // walk straight line
       // if () // maybe timer expired
-      //   task1_stage = 1; // move to next stage
+      //   task1_stage = 3; // move to next stage
 
       pid_task1(&pid_data, &imu_data, fans);
     default:

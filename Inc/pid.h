@@ -18,8 +18,6 @@ typedef struct {
   uint32 last_time;
 } PIDController;
 
-extern PIDController pid_data;
-
 void pid_reset(PIDController *pid);
 
 void pid_task1(PIDController *pid, IMUData *imu_data, Fan *fans);
@@ -27,5 +25,7 @@ void pid_task1(PIDController *pid, IMUData *imu_data, Fan *fans);
 void pid_task2(PIDController *pid, IMUData *imu_data, Fan *fans);
 
 void pid_task3(PIDController *pid, IMUData *imu_data, Fan *fans);
+
+extern PIDController pid_data;
 
 #endif // __PID_H__
