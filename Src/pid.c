@@ -13,6 +13,15 @@ void pid_reset(PIDController *pid) {
 }
 
 void pid_task1(PIDController *pid, IMUData *imu_data, Fan *fans) {
+  if (pid->kp != PID_TASK1_KP)
+    pid->kp = PID_TASK1_KP;
+  if (pid->ki != PID_TASK1_KI)
+    pid->ki = PID_TASK1_KI;
+  if (pid->kd != PID_TASK1_KD)
+    pid->kd = PID_TASK1_KD;
+  if (pid->setpoint != 0.0f)
+    pid->setpoint = 0.0f;
+  
   if (get_tick() - pid->last_time < PID_MIN_INTERVAL) {
     return;
   }
