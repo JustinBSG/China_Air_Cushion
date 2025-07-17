@@ -1,7 +1,6 @@
 #include "Libraries/seekfree_peripheral/headfile.h"
 #include "main.h"
 #include "fan.h"
-#include "SEEKFREE_IMU660RA.h"
 #include "imu.h"
 
 #define KEY4_PIN P73
