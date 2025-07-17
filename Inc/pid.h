@@ -7,6 +7,7 @@
 #include "fan.h"
 #include "hmc5883l.h"
 
+// maybe need to reduce
 #define PID_MIN_INTERVAL 10 // Minimum interval for PID tasks in milliseconds
 
 typedef struct {
@@ -19,6 +20,7 @@ typedef struct {
   uint32 last_time;
 } PIDController;
 
+// TODO: need to tune
 #define PID_TASK1_KP 0.0
 #define PID_TASK1_KI 0.0
 #define PID_TASK1_KD 0.0
