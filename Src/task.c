@@ -15,7 +15,7 @@ void task1(void) {
       break;
     case 1:
       // rotate 180 degree
-      // maybe use hmc to get angle
+      // maybe use hmc to get angle and keep a period of time and go to next stage
       // maybe use pid to control fan speed to rotate
       break;
     case 2:
@@ -36,6 +36,7 @@ void task2(void) {
       break;
     case 1:
       // rotate 180 degree
+      //  maybe use hmc to get angle and keep a period of time and go to next stage
       break;
     case 2:
       // walk S curve

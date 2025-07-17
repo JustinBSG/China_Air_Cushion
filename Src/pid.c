@@ -59,3 +59,5 @@ void pid_task2(PIDController *pid, IMUData *imu_data, Fan *fans) {
 void pid_task3(PIDController *pid, IMUData *imu_data, Fan *fans) {
   // give up
 }
+
+void pid_rotate(PIDController *pid, HMC5883L_Data *hmc5883l_data, HMC5883L_Calibration *hmc5883l_cali_data, Fan *fans, int degree) {}
