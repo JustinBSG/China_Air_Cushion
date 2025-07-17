@@ -2,10 +2,6 @@
 
 #include <math.h>
 
-#include "tick.h"
-#include "zf_delay.h"
-#include "zf_iic.h"
-
 HMC5883L_Data hmc5883l_data = {0, 0, 0};
 HMC5883L_Calibration hmc5883l_cali_data = {0, 0, 0, 0, 0, 0};
 

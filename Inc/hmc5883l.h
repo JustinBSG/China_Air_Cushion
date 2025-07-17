@@ -6,6 +6,10 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+#include "tick.h"
+#include "zf_delay.h"
+#include "zf_iic.h"
+
 #define HMC5883L_ADDR 0x1E
 #define HMC5883L_REG_ADDR_CONFA 0x00
 #define HMC5883L_REG_ADDR_CONFB 0x01
