@@ -56,6 +56,7 @@ void main() {
     iic_read_reg_bytes(HMC5883L_ADDR, HMC5883L_REG_ADDR_IDA, test_i2c, 3);
     sprintf(buf, "HMC5883L ID: %02X%02X%02X\n", test_i2c[0], test_i2c[1], test_i2c[2]);
     uart_putbuff(UART_2, buf, strlen(buf));
+    // 0x48 0x34 0x33
 
     // test imu reading
     // sprintf(buf, "acc_x: %.2f g, acc_y: %.2f g, acc_z: %.2f g, gyro_x: %.2f °/s, gyro_y: %.2f °/s, gyro_z: %.2f °/s\n",
