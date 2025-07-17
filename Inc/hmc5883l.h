@@ -3,9 +3,7 @@
 
 #include "headfile.h"
 
-#include <stdbool.h>
-#include <stdint.h>
-
+#include "main.h"
 #include "tick.h"
 #include "zf_delay.h"
 #include "zf_iic.h"
