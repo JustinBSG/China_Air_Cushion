@@ -16,20 +16,21 @@ uint8 test_i2c[3];
 
 void main() {
   board_init(); // init board
+  iic_init(IIC_1, IIC1_SCL_P15, IIC1_SDA_P14, 10);
+  uart_init(UART_2, UART2_RX_P10, UART2_TX_P11, 115200, TIM_2);
 
   BUZZER = 0;              // set default output for buzzer
   gpio_mode(P6_7, GPO_PP); // set pin p6.7 as push pull mode for large current (>20mA), note all pin default to be standard gpio
-
-  iic_init(IIC_1, IIC1_SCL_P15, IIC1_SDA_P14, 10);
 
   // pwm_init(TEST_PWM, 50, 0);
   // pwm_duty(TEST_PWM, PWM_DUTY_MAX*0.05*2);
   initial_all_fan();
   // fan_set_speed(&test_fan, FAN_0_SPEED_PWM);
-
-  uart_init(UART_2, UART2_RX_P10, UART2_TX_P11, 115200, TIM_2);
+  
   imu660ra_init();
   imu660ra_cali();
+
+  // test imu cali
   sprintf(buf, "acc_x_err: %.2f, acc_y_err: %.2f, acc_z_err: %.2f, gyro_x_err: %.2f, gyro_y_err: %.2f, gyro_z_err: %.2f\n",
           acc_x_err, acc_y_err, acc_z_err, gyro_x_err, gyro_y_err, gyro_z_err);
   uart_putbuff(UART_2, buf, strlen(buf));
