@@ -4,6 +4,7 @@
 #include "imu.h"
 #include "hmc5883l.h"
 #include "pid.h"
+#include "task.h"
 
 #define KEY4_PIN P73
 #define BUZZER P67

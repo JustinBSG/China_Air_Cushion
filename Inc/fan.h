@@ -24,4 +24,7 @@ typedef struct {
 void initial_all_fan(void);
 void fan_set_speed(Fan *fan, int speed);
 
+extern Fan test_fan;
+extern Fan fans[6];
+
 #endif // __FAN_H__
