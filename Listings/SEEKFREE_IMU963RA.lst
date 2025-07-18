@@ -1,4 +1,4 @@
-C251 COMPILER V5.60.0,  SEEKFREE_IMU963RA                                                  18/07/25  14:54:07  PAGE 1   
+C251 COMPILER V5.60.0,  SEEKFREE_IMU963RA                                                  18/07/25  14:57:42  PAGE 1   
 
 
 C251 COMPILER V5.60.0, COMPILATION OF MODULE SEEKFREE_IMU963RA
@@ -66,7 +66,7 @@ stmt  level    source
    53          int16 imu963ra_mag_x = 0,  imu963ra_mag_y = 0,  imu963ra_mag_z = 0;
    54          
    55          #if IMU963RA_USE_SOFT_IIC
-C251 COMPILER V5.60.0,  SEEKFREE_IMU963RA                                                  18/07/25  14:54:07  PAGE 2   
+C251 COMPILER V5.60.0,  SEEKFREE_IMU963RA                                                  18/07/25  14:57:42  PAGE 2   
 
                
                
@@ -134,7 +134,7 @@ stmt  level    source
                
                static int imu963ra_sccb_waitack(void)
                {
-C251 COMPILER V5.60.0,  SEEKFREE_IMU963RA                                                  18/07/25  14:54:07  PAGE 3   
+C251 COMPILER V5.60.0,  SEEKFREE_IMU963RA                                                  18/07/25  14:57:42  PAGE 3   
 
                    IMU963RA_SCL_LOW();
                    imu963ra_simiic_delay();
@@ -202,7 +202,7 @@ stmt  level    source
                }
                
                
-C251 COMPILER V5.60.0,  SEEKFREE_IMU963RA                                                  18/07/25  14:54:07  PAGE 4   
+C251 COMPILER V5.60.0,  SEEKFREE_IMU963RA                                                  18/07/25  14:57:42  PAGE 4   
 
                //-------------------------------------------------------------------------------------------------------
              -------------
@@ -270,7 +270,7 @@ stmt  level    source
                    uint8 xdata dat;
                    imu963ra_simiic_start();
                    imu963ra_send_ch( (dev_add<<1) | 0x00);  //发送器件地址加写位
-C251 COMPILER V5.60.0,  SEEKFREE_IMU963RA                                                  18/07/25  14:54:07  PAGE 5   
+C251 COMPILER V5.60.0,  SEEKFREE_IMU963RA                                                  18/07/25  14:57:42  PAGE 5   
 
                    imu963ra_send_ch( reg );          //发送从机寄存器地址
                    imu963ra_simiic_stop();
@@ -338,7 +338,7 @@ stmt  level    source
              -,reg))
                
                //-------------------------------------------------------------------------------------------------------
-C251 COMPILER V5.60.0,  SEEKFREE_IMU963RA                                                  18/07/25  14:54:07  PAGE 6   
+C251 COMPILER V5.60.0,  SEEKFREE_IMU963RA                                                  18/07/25  14:57:42  PAGE 6   
 
              -------------
                // 函数简介     IMU963RA 读数据 内部调用
@@ -406,7 +406,7 @@ stmt  level    source
   360   1      }
   361          
   362          
-C251 COMPILER V5.60.0,  SEEKFREE_IMU963RA                                                  18/07/25  14:54:07  PAGE 7   
+C251 COMPILER V5.60.0,  SEEKFREE_IMU963RA                                                  18/07/25  14:57:42  PAGE 7   
 
   363          //-------------------------------------------------------------------------------------------------------
              -------------
@@ -474,7 +474,7 @@ stmt  level    source
   420          //-------------------------------------------------------------------------------------------------------
              -------------
   421          // 函数简介     IMU963RA 写寄存器
-C251 COMPILER V5.60.0,  SEEKFREE_IMU963RA                                                  18/07/25  14:54:07  PAGE 8   
+C251 COMPILER V5.60.0,  SEEKFREE_IMU963RA                                                  18/07/25  14:57:42  PAGE 8   
 
   422          // 参数说明     reg             寄存器地址
   423          // 参数说明     dat            数据
@@ -542,7 +542,7 @@ stmt  level    source
   478          {
   479   1          uint8 xdata return_state = 0;
   480   1          uint16 xdata timeout_count = 0;
-C251 COMPILER V5.60.0,  SEEKFREE_IMU963RA                                                  18/07/25  14:54:07  PAGE 9   
+C251 COMPILER V5.60.0,  SEEKFREE_IMU963RA                                                  18/07/25  14:57:42  PAGE 9   
 
   481   1          addr = addr << 1;
   482   1          imu963ra_write_acc_gyro_register(IMU963RA_SLV0_CONFIG, 0x00);               // 从机0配置清除
@@ -610,7 +610,7 @@ stmt  level    source
   534          // 备注信息     内部调用
   535          //-------------------------------------------------------------------------------------------------------
              -------------
-C251 COMPILER V5.60.0,  SEEKFREE_IMU963RA                                                  18/07/25  14:54:07  PAGE 10  
+C251 COMPILER V5.60.0,  SEEKFREE_IMU963RA                                                  18/07/25  14:57:42  PAGE 10  
 
   536          static void imu963ra_connect_mag (uint8 addr, uint8 reg)
   537          {
@@ -678,7 +678,7 @@ stmt  level    source
   592   2          }
   593   1          return return_state;
   594   1      }
-C251 COMPILER V5.60.0,  SEEKFREE_IMU963RA                                                  18/07/25  14:54:07  PAGE 11  
+C251 COMPILER V5.60.0,  SEEKFREE_IMU963RA                                                  18/07/25  14:57:42  PAGE 11  
 
   595          
   596          //-------------------------------------------------------------------------------------------------------
@@ -746,7 +746,7 @@ stmt  level    source
   652          
   653          //-------------------------------------------------------------------------------------------------------
              -------------
-C251 COMPILER V5.60.0,  SEEKFREE_IMU963RA                                                  18/07/25  14:54:07  PAGE 12  
+C251 COMPILER V5.60.0,  SEEKFREE_IMU963RA                                                  18/07/25  14:57:42  PAGE 12  
 
   654          // 函数简介     将 IMU963RA 加速度计数据转换为实际物理数据
   655          // 参数说明     gyro_value      任意轴的加速度计数据
@@ -814,7 +814,7 @@ stmt  level    source
              -8.6，    可以转化为带物理单位的数据，单位为：°/s
   707   2              case 0x5C:
   708   2                  gyro_dat = (float)gyro_value / 14.3f;
-C251 COMPILER V5.60.0,  SEEKFREE_IMU963RA                                                  18/07/25  14:54:07  PAGE 13  
+C251 COMPILER V5.60.0,  SEEKFREE_IMU963RA                                                  18/07/25  14:57:42  PAGE 13  
 
   709   2                  break;              //  0x5C 陀螺仪量程为:±2000dps 获取到的陀螺仪数据除以 1
              -4.3，    可以转化为带物理单位的数据，单位为：°/s
@@ -882,7 +882,7 @@ stmt  level    source
   762   2              {
   763   3                  printf( "IMU963RA acc and gyro self check error.\r\n");
   764   3                  return_state = 1;
-C251 COMPILER V5.60.0,  SEEKFREE_IMU963RA                                                  18/07/25  14:54:07  PAGE 14  
+C251 COMPILER V5.60.0,  SEEKFREE_IMU963RA                                                  18/07/25  14:57:42  PAGE 14  
 
   765   3                  break;
   766   3              }
@@ -950,7 +950,7 @@ stmt  level    source
              -�置磁力计量程8G 输出速率100hz 连续模式
   808   2              // IMU963RA_MAG_ADDR 寄存器
   809   2              // 设置为:0x19 磁力计量程为:8G     获取到的加速度计数据 除以3000， 可以�
-C251 COMPILER V5.60.0,  SEEKFREE_IMU963RA                                                  18/07/25  14:54:07  PAGE 15  
+C251 COMPILER V5.60.0,  SEEKFREE_IMU963RA                                                  18/07/25  14:57:42  PAGE 15  
 
              -�化为带物理单位的数据，单位：G(高斯)
   810   2              // 设置为:0x09 磁力计量程为:2G     获取到的加速度计数据 除以12000，可以�

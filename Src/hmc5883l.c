@@ -46,7 +46,7 @@ float hmc5883l_cal_xy_angle(HMC5883L_Data* dat, HMC5883L_Calibration* cali_data)
 }
 
 void hmc5883l_calibrate(HMC5883L_Calibration* cali_data) {
-  cali_data->start_time = HAL_GetTick();
+  cali_data->start_time = get_tick();
   while (get_tick() - cali_data->start_time <= 10000) {
     HMC5883L_Data dat;
     hmc5883l_read_data(&dat);

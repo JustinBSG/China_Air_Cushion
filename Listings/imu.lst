@@ -1,4 +1,4 @@
-C251 COMPILER V5.60.0,  imu                                                                18/07/25  14:54:04  PAGE 1   
+C251 COMPILER V5.60.0,  imu                                                                18/07/25  14:57:39  PAGE 1   
 
 
 C251 COMPILER V5.60.0, COMPILATION OF MODULE imu
@@ -66,7 +66,7 @@ stmt  level    source
    55   1        acc_z_err = acc_z_sum / sample_count;
    56   1      
    57   1        // Assign final estimates for gyroscope errors
-C251 COMPILER V5.60.0,  imu                                                                18/07/25  14:54:04  PAGE 2   
+C251 COMPILER V5.60.0,  imu                                                                18/07/25  14:57:39  PAGE 2   
 
    58   1        gyro_x_err = gyro_x_est;
    59   1        gyro_y_err = gyro_y_est;
