@@ -569,6 +569,16 @@
               <FileType>5</FileType>
               <FilePath>.\Libraries\seekfree_libraries\zf_function.h</FilePath>
             </File>
+            <File>
+              <FileName>zf_iic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Libraries\seekfree_libraries\zf_iic.c</FilePath>
+            </File>
+            <File>
+              <FileName>zf_iic.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Libraries\seekfree_libraries\zf_iic.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

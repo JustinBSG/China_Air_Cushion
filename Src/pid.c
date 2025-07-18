@@ -13,6 +13,8 @@ void pid_reset(PIDController *pid) {
 }
 
 void pid_task1(PIDController *pid, IMUData *imu_data, Fan *fans) {
+  float error = 0, p_term = 0, i_term = 0, d_term = 0, output = 0;
+  int left_fan_speed = 0, right_fan_speed = 0;
   if (pid->kp != PID_TASK1_KP)
     pid->kp = PID_TASK1_KP;
   if (pid->ki != PID_TASK1_KI)
@@ -30,20 +32,20 @@ void pid_task1(PIDController *pid, IMUData *imu_data, Fan *fans) {
   imu660ra_get_data(imu_data);
 
   // need to think again
-  float error = pid->setpoint - imu_data->z_gyro;
+  error = pid->setpoint - imu_data->z_gyro;
 
-  float p_term = pid->kp * error;
+  p_term = pid->kp * error;
 
-  pid->integral += error * (PID_MIN_INTERVAL / 1000.0f);
-  float i_term = pid->ki * pid->integral;
+  pid->integral += error * PID_MIN_INTERVAL;
+  i_term = pid->ki * pid->integral;
 
-  float d_term = pid->kd * (error - pid->prev_error) / (PID_MIN_INTERVAL / 1000.0f);
+  d_term = pid->kd * (error - pid->prev_error) / PID_MIN_INTERVAL;
   pid->prev_error = error;
 
-  float output = p_term + i_term + d_term;
+  output = p_term + i_term + d_term;
 
-  int left_fan_speed = FAN_MID_SPEED_PWM - (int)output;
-  int right_fan_speed = FAN_MID_SPEED_PWM + (int)output;
+  left_fan_speed = FAN_MID_SPEED_PWM - (int)output;
+  right_fan_speed = FAN_MID_SPEED_PWM + (int)output;
 
   if (left_fan_speed < FAN_0_SPEED_PWM)
     left_fan_speed = FAN_0_SPEED_PWM;
