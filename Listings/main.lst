@@ -1,4 +1,4 @@
-C251 COMPILER V5.60.0,  main                                                               18/07/25  14:57:38  PAGE 1   
+C251 COMPILER V5.60.0,  main                                                               18/07/25  15:03:58  PAGE 1   
 
 
 C251 COMPILER V5.60.0, COMPILATION OF MODULE main
@@ -66,7 +66,7 @@ stmt  level    source
    53   2          //   }
    54   2          // }
    55   2      
-C251 COMPILER V5.60.0,  main                                                               18/07/25  14:57:38  PAGE 2   
+C251 COMPILER V5.60.0,  main                                                               18/07/25  15:03:58  PAGE 2   
 
    56   2          // test i2c and hmc reading
    57   2          iic_read_reg_bytes(HMC5883L_ADDR, HMC5883L_REG_ADDR_IDA, test_i2c, 3);

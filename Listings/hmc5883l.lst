@@ -1,4 +1,4 @@
-C251 COMPILER V5.60.0,  hmc5883l                                                           18/07/25  14:57:39  PAGE 1   
+C251 COMPILER V5.60.0,  hmc5883l                                                           18/07/25  15:03:59  PAGE 1   
 
 
 C251 COMPILER V5.60.0, COMPILATION OF MODULE hmc5883l
@@ -54,7 +54,6 @@ stmt  level    source
    43          
    44          float hmc5883l_cal_xy_angle(HMC5883L_Data* dat, HMC5883L_Calibration* cali_data) {
    45   1        return atan2(dat->y - cali_data->y_offset, dat->x - cali_data->x_offset) * 180.0 / M_PI + 180.0;
-*** ERROR C67 IN LINE 45 OF Src\hmc5883l.c: 'M_PI': undefined identifier
    46   1      }
    47          
    48          void hmc5883l_calibrate(HMC5883L_Calibration* cali_data) {
@@ -66,9 +65,9 @@ stmt  level    source
    54   2            cali_data->x_min = dat.x;
    55   2          if (dat.x > cali_data->x_max)
    56   2            cali_data->x_max = dat.x;
-C251 COMPILER V5.60.0,  hmc5883l                                                           18/07/25  14:57:39  PAGE 2   
-
    57   2          if (dat.y < cali_data->y_min)
+C251 COMPILER V5.60.0,  hmc5883l                                                           18/07/25  15:03:59  PAGE 2   
+
    58   2            cali_data->y_min = dat.y;
    59   2          if (dat.y > cali_data->y_max)
    60   2            cali_data->y_max = dat.y;
@@ -83,4 +82,26 @@ stmt  level    source
    69   1        cali_data->z_offset = (cali_data->z_max + cali_data->z_min) / 2;
    70   1      }
 
-C251 COMPILATION COMPLETE.  0 WARNING(S),  1 ERROR(S)
+
+Module Information          Static   Overlayable
+------------------------------------------------
+  code size            =       483     ------
+  ecode size           =    ------     ------
+  data size            =    ------     ------
+  idata size           =    ------     ------
+  pdata size           =    ------     ------
+  xdata size           =    ------     ------
+  xdata-const size     =    ------     ------
+  edata size           =        26         16
+  bit size             =    ------     ------
+  ebit size            =    ------     ------
+  bitaddressable size  =    ------     ------
+  ebitaddressable size =    ------     ------
+  far data size        =    ------     ------
+  huge data size       =    ------     ------
+  const size           =    ------     ------
+  hconst size          =        37     ------
+End of Module Information.
+
+
+C251 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

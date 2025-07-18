@@ -1,4 +1,4 @@
-C251 COMPILER V5.60.0,  isr                                                                18/07/25  14:57:39  PAGE 1   
+C251 COMPILER V5.60.0,  isr                                                                18/07/25  15:03:59  PAGE 1   
 
 
 C251 COMPILER V5.60.0, COMPILATION OF MODULE isr
@@ -66,7 +66,7 @@ stmt  level    source
    50   2          UART2_CLEAR_RX_FLAG;
    51   2          // �������ݼĴ���Ϊ��S2BUF
    52   2        }
-C251 COMPILER V5.60.0,  isr                                                                18/07/25  14:57:39  PAGE 2   
+C251 COMPILER V5.60.0,  isr                                                                18/07/25  15:03:59  PAGE 2   
 
    53   1      }
    54          
@@ -134,7 +134,7 @@ stmt  level    source
   116   1        //  ccd_collect();   //CCD�ɼ�����
   117   1      }
   118          
-C251 COMPILER V5.60.0,  isr                                                                18/07/25  14:57:39  PAGE 3   
+C251 COMPILER V5.60.0,  isr                                                                18/07/25  15:03:59  PAGE 3   
 
   119          // void  INT0_Isr()  interrupt 0;
   120          // void  TM0_Isr()   interrupt 1;

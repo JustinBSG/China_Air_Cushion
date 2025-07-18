@@ -7,6 +7,10 @@
 #include "zf_delay.h"
 #include "zf_iic.h"
 
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
+
 #define HMC5883L_ADDR 0x1E
 #define HMC5883L_REG_ADDR_CONFA 0x00
 #define HMC5883L_REG_ADDR_CONFB 0x01

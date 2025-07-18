@@ -1,4 +1,4 @@
-C251 COMPILER V5.60.0,  pid                                                                18/07/25  14:57:40  PAGE 1   
+C251 COMPILER V5.60.0,  pid                                                                18/07/25  15:04:00  PAGE 1   
 
 
 C251 COMPILER V5.60.0, COMPILATION OF MODULE pid
@@ -66,7 +66,7 @@ stmt  level    source
 *** ERROR C25 IN LINE 48 OF Src\pid.c: syntax error near '<'
 *** ERROR C25 IN LINE 48 OF Src\pid.c: syntax error near '0.05'
    49   1          left_fan_speed = FAN_0_SPEED_PWM;
-C251 COMPILER V5.60.0,  pid                                                                18/07/25  14:57:40  PAGE 2   
+C251 COMPILER V5.60.0,  pid                                                                18/07/25  15:04:00  PAGE 2   
 
 *** ERROR C53 IN LINE 49 OF Src\pid.c: redefinition of 'left_fan_speed'
    50   1        else if (left_fan_speed > FAN_FULL_SPEED_PWM)
