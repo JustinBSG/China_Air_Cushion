@@ -21,7 +21,7 @@ void pid_task1(PIDController *pid, IMUData *imu_data, Fan *fans) {
     pid->kd = PID_TASK1_KD;
   if (pid->setpoint != 0.0f)
     pid->setpoint = 0.0f;
-  
+
   if (get_tick() - pid->last_time < PID_MIN_INTERVAL) {
     return;
   }
@@ -45,18 +45,18 @@ void pid_task1(PIDController *pid, IMUData *imu_data, Fan *fans) {
   int left_fan_speed = FAN_MID_SPEED_PWM - (int)output;
   int right_fan_speed = FAN_MID_SPEED_PWM + (int)output;
 
-  if (left_fan_speed < FAN_0_SPEED_PWM) 
+  if (left_fan_speed < FAN_0_SPEED_PWM)
     left_fan_speed = FAN_0_SPEED_PWM;
-  else if (left_fan_speed > FAN_FULL_SPEED_PWM) 
+  else if (left_fan_speed > FAN_FULL_SPEED_PWM)
     left_fan_speed = FAN_FULL_SPEED_PWM;
-  
-  if (right_fan_speed < FAN_0_SPEED_PWM) 
+
+  if (right_fan_speed < FAN_0_SPEED_PWM)
     right_fan_speed = FAN_0_SPEED_PWM;
-  else if (right_fan_speed > FAN_FULL_SPEED_PWM) 
+  else if (right_fan_speed > FAN_FULL_SPEED_PWM)
     right_fan_speed = FAN_FULL_SPEED_PWM;
-  
-  fan_set_speed(&fans[2], left_fan_speed); // Left fan
-  fan_set_speed(&fans[3], right_fan_speed); // Right fan
+
+  fan_set_speed(&fans[2], left_fan_speed);   // Left fan
+  fan_set_speed(&fans[3], right_fan_speed);  // Right fan
 }
 
 void pid_task2(PIDController *pid, IMUData *imu_data, Fan *fans) {

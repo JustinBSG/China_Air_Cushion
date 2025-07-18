@@ -2,7 +2,6 @@
 #define __HMC5883L_H__
 
 #include "headfile.h"
-
 #include "main.h"
 #include "tick.h"
 #include "zf_delay.h"

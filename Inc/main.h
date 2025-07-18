@@ -5,6 +5,9 @@
 
 #define TEST_PWM PWMA_CH4P_P66
 
-typedef enum {FALSE = 0, TRUE = !FALSE} bool;
+typedef enum {
+  FALSE = 0,
+  TRUE = !FALSE
+} bool;
 
-#endif // __MAIN_H__
+#endif  // __MAIN_H__

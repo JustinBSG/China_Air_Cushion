@@ -1,23 +1,23 @@
 #ifndef __PID_H__
 #define __PID_H__
 
-#include "headfile.h"
-#include "tick.h"
-#include "imu.h"
 #include "fan.h"
+#include "headfile.h"
 #include "hmc5883l.h"
+#include "imu.h"
+#include "tick.h"
 
 // maybe need to reduce
-#define PID_MIN_INTERVAL 10 // Minimum interval for PID tasks in milliseconds
+#define PID_MIN_INTERVAL 10  // Minimum interval for PID tasks in milliseconds
 
 typedef struct {
-  float kp;
-  float ki;
-  float kd;
-  float setpoint;
-  float integral;
-  float prev_error;
-  uint32 last_time;
+    float kp;
+    float ki;
+    float kd;
+    float setpoint;
+    float integral;
+    float prev_error;
+    uint32 last_time;
 } PIDController;
 
 // TODO: need to tune
@@ -48,4 +48,4 @@ void pid_task3(PIDController *pid, IMUData *imu_data, Fan *fans);
 void pid_rotate(PIDController *pid, HMC5883L_Data *hmc5883l_data, HMC5883L_Calibration *hmc5883l_cali_data, Fan *fans, int degree);
 extern PIDController pid_data;
 
-#endif // __PID_H__
+#endif  // __PID_H__

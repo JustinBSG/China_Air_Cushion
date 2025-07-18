@@ -4,8 +4,8 @@
 #include "headfile.h"
 
 typedef struct {
-  int speed;
-  PWMCH_enum pin;
+    int speed;
+    PWMCH_enum pin;
 } Fan;
 
 #define FAN_FL_PIN
@@ -17,8 +17,8 @@ typedef struct {
 
 #define FAN_FREQ 50
 
-#define FAN_0_SPEED_PWM     PWM_DUTY_MAX*0.05
-#define FAN_FULL_SPEED_PWM  PWM_DUTY_MAX*0.05*2
+#define FAN_0_SPEED_PWM PWM_DUTY_MAX * 0.05
+#define FAN_FULL_SPEED_PWM PWM_DUTY_MAX * 0.05 * 2
 #define FAN_MID_SPEED_PWM (FAN_0_SPEED_PWM + FAN_FULL_SPEED_PWM) / 2.0
 
 void initial_all_fan(void);
@@ -27,4 +27,4 @@ void fan_set_speed(Fan *fan, int speed);
 extern Fan test_fan;
 extern Fan fans[6];
 
-#endif // __FAN_H__
+#endif  // __FAN_H__

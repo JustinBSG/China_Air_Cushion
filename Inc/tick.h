@@ -1,5 +1,5 @@
 #ifndef __TICK_H__
-#define __TICK_H__ 
+#define __TICK_H__
 
 #include "headfile.h"
 
@@ -10,4 +10,4 @@ extern uint32 tick;
 void tick_init(void);
 uint32 get_tick(void);
 
-#endif // __TICK_H__
+#endif  // __TICK_H__

@@ -1,33 +1,34 @@
-#include "Libraries/seekfree_peripheral/headfile.h"
 #include "main.h"
+
+#include "Libraries/seekfree_peripheral/headfile.h"
 #include "fan.h"
-#include "imu.h"
 #include "hmc5883l.h"
+#include "imu.h"
 #include "pid.h"
 #include "task.h"
 
 #define KEY4_PIN P73
 #define BUZZER P67
 
-uint8 key4_status = 1; // set default button status
+uint8 key4_status = 1;  // set default button status
 uint8 key4_previous_status;
 char buf[256];
 uint8 count = 0;
 uint8 test_i2c[3];
 
 void main() {
-  board_init(); // init board
+  board_init();  // init board
   iic_init(IIC_1, IIC1_SCL_P15, IIC1_SDA_P14, 10);
   uart_init(UART_2, UART2_RX_P10, UART2_TX_P11, 115200, TIM_2);
 
-  BUZZER = 0;              // set default output for buzzer
-  gpio_mode(P6_7, GPO_PP); // set pin p6.7 as push pull mode for large current (>20mA), note all pin default to be standard gpio
+  BUZZER = 0;               // set default output for buzzer
+  gpio_mode(P6_7, GPO_PP);  // set pin p6.7 as push pull mode for large current (>20mA), note all pin default to be standard gpio
 
   // pwm_init(TEST_PWM, 50, 0);
   // pwm_duty(TEST_PWM, PWM_DUTY_MAX*0.05*2);
   initial_all_fan();
   // fan_set_speed(&test_fan, FAN_0_SPEED_PWM);
-  
+
   imu660ra_init();
   imu660ra_cali();
 
@@ -45,7 +46,7 @@ void main() {
     // {
     //   delay_ms(10); // debounce
     //   key4_status = KEY4_PIN;
-      
+
     //   if (!key4_status)
     //   {
     //     BUZZER = !BUZZER; // turn on/off the buzzer
