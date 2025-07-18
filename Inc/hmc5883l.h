@@ -42,12 +42,12 @@ typedef struct {
 } HMC5883L_Calibration;
 
 void hmc5883l_init(void);
-void hmc5883l_write(uint8 reg, uint8* data);
-void hmc5883l_read(uint8 reg, uint8* data);
+void hmc5883l_write(uint8 reg, uint8* dat);
+void hmc5883l_read(uint8 reg, uint8* dat);
 
 bool hmc5883l_is_data_ready(void);
-void hmc5883l_read_data(HMC5883L_Data* data);
-float hmc5883l_cal_xy_angle(const HMC5883L_Data* const data, const HMC5883L_Calibration* const cali_data);
+void hmc5883l_read_data(HMC5883L_Data* dat);
+float hmc5883l_cal_xy_angle(HMC5883L_Data* dat, HMC5883L_Calibration* cali_data);
 void hmc5883l_calibrate(HMC5883L_Calibration* cali_data);
 
 extern HMC5883L_Data hmc5883l_data;

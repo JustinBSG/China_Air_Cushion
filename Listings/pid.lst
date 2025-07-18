@@ -1,0 +1,78 @@
+C251 COMPILER V5.60.0,  pid                                                                18/07/25  14:54:04  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE pid
+OBJECT MODULE PLACED IN .\Objects\pid.obj
+COMPILER INVOKED BY: C:\Keil_v5\C251\BIN\C251.EXE Src\pid.c XSMALL BROWSE INCDIR(.\Libraries\libraries;.\Libraries\seekf
+                    -ree_components;.\Libraries\seekfree_libraries;.\Libraries\seekfree_peripheral;.\Inc) DEBUG PRINT(.\Listings\pid.lst) TAB
+                    -S(2) OBJECT(.\Objects\pid.obj) 
+
+stmt  level    source
+
+    1          #include "pid.h"
+    2          
+    3          PIDController pid_data = {0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0};
+    4          
+    5          void pid_reset(PIDController *pid) {
+    6   1        pid->kp = 0.0f;
+    7   1        pid->ki = 0.0f;
+    8   1        pid->kd = 0.0f;
+    9   1        pid->setpoint = 0.0f;
+   10   1        pid->integral = 0.0f;
+   11   1        pid->prev_error = 0.0f;
+   12   1        pid->last_time = 0;
+   13   1      }
+   14          
+   15          void pid_task1(PIDController *pid, IMUData *imu_data, Fan *fans) {
+   16   1        if (pid->kp != PID_TASK1_KP)
+   17   1          pid->kp = PID_TASK1_KP;
+   18   1        if (pid->ki != PID_TASK1_KI)
+   19   1          pid->ki = PID_TASK1_KI;
+   20   1        if (pid->kd != PID_TASK1_KD)
+   21   1          pid->kd = PID_TASK1_KD;
+   22   1        if (pid->setpoint != 0.0f)
+   23   1          pid->setpoint = 0.0f;
+   24   1      
+   25   1        if (get_tick() - pid->last_time < PID_MIN_INTERVAL) {
+   26   2          return;
+   27   2        }
+   28   1        pid->last_time = get_tick();
+   29   1      
+   30   1        imu660ra_get_data(imu_data);
+   31   1      
+   32   1        // need to think again
+   33   1        float error = pid->setpoint - imu_data->z_gyro;
+*** ERROR C25 IN LINE 33 OF Src\pid.c: syntax error near 'float'
+   34   1      
+   35   1        float p_term = pid->kp * error;
+   36   1      
+   37   1        pid->integral += error * (PID_MIN_INTERVAL / 1000.0f);
+*** ERROR C25 IN LINE 37 OF Src\pid.c: syntax error near '->'
+*** ERROR C25 IN LINE 37 OF Src\pid.c: syntax error near '+='
+*** ERROR C25 IN LINE 37 OF Src\pid.c: syntax error near '10'
+   38   1        float i_term = pid->ki * pid->integral;
+   39   1      
+   40   1        float d_term = pid->kd * (error - pid->prev_error) / (PID_MIN_INTERVAL / 1000.0f);
+   41   1        pid->prev_error = error;
+*** ERROR C25 IN LINE 41 OF Src\pid.c: syntax error near '->'
+   42   1      
+   43   1        float output = p_term + i_term + d_term;
+   44   1      
+   45   1        int left_fan_speed = FAN_MID_SPEED_PWM - (int)output;
+   46   1        int right_fan_speed = FAN_MID_SPEED_PWM + (int)output;
+   47   1      
+   48   1        if (left_fan_speed < FAN_0_SPEED_PWM)
+*** ERROR C25 IN LINE 48 OF Src\pid.c: syntax error near 'if'
+*** ERROR C25 IN LINE 48 OF Src\pid.c: syntax error near '<'
+*** ERROR C25 IN LINE 48 OF Src\pid.c: syntax error near '0.05'
+   49   1          left_fan_speed = FAN_0_SPEED_PWM;
+C251 COMPILER V5.60.0,  pid                                                                18/07/25  14:54:04  PAGE 2   
+
+*** ERROR C53 IN LINE 49 OF Src\pid.c: redefinition of 'left_fan_speed'
+   50   1        else if (left_fan_speed > FAN_FULL_SPEED_PWM)
+*** ERROR C25 IN LINE 50 OF Src\pid.c: syntax error near 'else'
+*** ERROR C25 IN LINE 50 OF Src\pid.c: syntax error near '>'
+*** ERROR C25 IN LINE 50 OF Src\pid.c: syntax error near '0.05'
+*** ERROR C7 IN LINE 50 OF Src\pid.c: compilation aborted
+
+C251 COMPILATION COMPLETE.  0 WARNING(S),  13 ERROR(S)

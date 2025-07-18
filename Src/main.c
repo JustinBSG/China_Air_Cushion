@@ -18,7 +18,7 @@ uint8 test_i2c[3];
 
 void main() {
   board_init();  // init board
-  iic_init(IIC_1, IIC1_SCL_P15, IIC1_SDA_P14, 10);
+  iic_init(IIC_4, IIC4_SCL_P32, IIC4_SDA_P33, 10);
   uart_init(UART_2, UART2_RX_P10, UART2_TX_P11, 115200, TIM_2);
 
   BUZZER = 0;               // set default output for buzzer

@@ -1,4 +1,4 @@
-C251 COMPILER V5.60.0,  fan                                                                15/07/25  22:10:02  PAGE 1   
+C251 COMPILER V5.60.0,  fan                                                                18/07/25  14:54:03  PAGE 1   
 
 
 C251 COMPILER V5.60.0, COMPILATION OF MODULE fan
@@ -10,23 +10,25 @@ COMPILER INVOKED BY: C:\Keil_v5\C251\BIN\C251.EXE Src\fan.c XSMALL BROWSE INCDIR
 stmt  level    source
 
     1          #include "fan.h"
-    2          // TODO: Add array of 6 fans
-    3          Fan test_fan = {FAN_0_SPEED_PWM, PWMA_CH4P_P66};
-    4          
-    5          void initial_all_fan(void) {
-    6   1        pwm_init(PWMA_CH4P_P66, FAN_FREQ, 0);
-    7   1        pwm_duty(PWMA_CH4P_P66, FAN_0_SPEED_PWM);
-    8   1      }
-    9          
-   10          void fan_set_speed(Fan *fan, int speed) {
-   11   1        if (speed < FAN_0_SPEED_PWM)
-   12   1          speed = FAN_0_SPEED_PWM;
-   13   1        else if (speed > FAN_FULL_SPEED_PWM)
-   14   1          speed = FAN_FULL_SPEED_PWM;
-   15   1      
-   16   1        pwm_duty(fan->pin, speed);
-   17   1        fan->speed = speed;
-   18   1      }
+    2          
+    3          // TODO: Add array of 6 fans
+    4          Fan fans[6];
+    5          Fan test_fan = {FAN_0_SPEED_PWM, PWMA_CH4P_P66};
+    6          
+    7          void initial_all_fan(void) {
+    8   1        pwm_init(PWMA_CH4P_P66, FAN_FREQ, 0);
+    9   1        pwm_duty(PWMA_CH4P_P66, FAN_0_SPEED_PWM);
+   10   1      }
+   11          
+   12          void fan_set_speed(Fan *fan, int speed) {
+   13   1        if (speed < FAN_0_SPEED_PWM)
+   14   1          speed = FAN_0_SPEED_PWM;
+   15   1        else if (speed > FAN_FULL_SPEED_PWM)
+   16   1          speed = FAN_FULL_SPEED_PWM;
+   17   1      
+   18   1        pwm_duty(fan->pin, speed);
+   19   1        fan->speed = speed;
+   20   1      }
 
 
 Module Information          Static   Overlayable
@@ -38,7 +40,7 @@ Module Information          Static   Overlayable
   pdata size           =    ------     ------
   xdata size           =    ------     ------
   xdata-const size     =    ------     ------
-  edata size           =         4          4
+  edata size           =        28          4
   bit size             =    ------     ------
   ebit size            =    ------     ------
   bitaddressable size  =    ------     ------

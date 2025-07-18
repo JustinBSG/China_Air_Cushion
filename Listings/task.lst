@@ -1,0 +1,87 @@
+C251 COMPILER V5.60.0,  task                                                               18/07/25  14:54:05  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE task
+OBJECT MODULE PLACED IN .\Objects\task.obj
+COMPILER INVOKED BY: C:\Keil_v5\C251\BIN\C251.EXE Src\task.c XSMALL BROWSE INCDIR(.\Libraries\libraries;.\Libraries\seek
+                    -free_components;.\Libraries\seekfree_libraries;.\Libraries\seekfree_peripheral;.\Inc) DEBUG PRINT(.\Listings\task.lst) T
+                    -ABS(2) OBJECT(.\Objects\task.obj) 
+
+stmt  level    source
+
+    1          #include "task.h"
+    2          
+    3          uint8 task1_stage = 0;
+    4          uint8 task2_stage = 0;
+    5          uint8 task3_stage = 0;
+    6          
+    7          void task1(void) {
+    8   1        switch (task1_stage) {
+    9   2          case 0:
+   10   2            // walk straight line
+   11   2            // if () // maybe timer expired
+   12   2            //   task1_stage = 1; // move to next stage
+   13   2      
+   14   2            pid_task1(&pid_data, &imu_data, fans);
+   15   2            break;
+   16   2          case 1:
+   17   2            // rotate 180 degree
+   18   2            // maybe use hmc to get angle and keep a period of time and go to next stage
+   19   2            // maybe use pid to control fan speed to rotate
+   20   2            break;
+   21   2          case 2:
+   22   2            // walk straight line
+   23   2            // if () // maybe timer expired
+   24   2            //   task1_stage = 3; // move to next stage
+   25   2      
+   26   2            pid_task1(&pid_data, &imu_data, fans);
+   27   2          default:
+   28   2            break;
+   29   2        }
+   30   1      }
+   31          
+   32          void task2(void) {
+   33   1        switch (task2_stage) {
+   34   2          case 0:
+   35   2            // walk S curve
+   36   2            break;
+   37   2          case 1:
+   38   2            // rotate 180 degree
+   39   2            //  maybe use hmc to get angle and keep a period of time and go to next stage
+   40   2            break;
+   41   2          case 2:
+   42   2            // walk S curve
+   43   2          default:
+   44   2            break;
+   45   2        }
+   46   1      }
+   47          
+   48          void task3(void) {
+   49   1        // give up la
+   50   1      }
+
+
+Module Information          Static   Overlayable
+------------------------------------------------
+  code size            =        36     ------
+  ecode size           =    ------     ------
+  data size            =    ------     ------
+  idata size           =    ------     ------
+C251 COMPILER V5.60.0,  task                                                               18/07/25  14:54:05  PAGE 2   
+
+  pdata size           =    ------     ------
+  xdata size           =    ------     ------
+  xdata-const size     =    ------     ------
+  edata size           =         3     ------
+  bit size             =    ------     ------
+  ebit size            =    ------     ------
+  bitaddressable size  =    ------     ------
+  ebitaddressable size =    ------     ------
+  far data size        =    ------     ------
+  huge data size       =    ------     ------
+  const size           =    ------     ------
+  hconst size          =        15     ------
+End of Module Information.
+
+
+C251 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

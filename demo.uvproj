@@ -349,6 +349,21 @@
               <FileType>1</FileType>
               <FilePath>.\Src\imu.c</FilePath>
             </File>
+            <File>
+              <FileName>hmc5883l.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Src\hmc5883l.c</FilePath>
+            </File>
+            <File>
+              <FileName>pid.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Src\pid.c</FilePath>
+            </File>
+            <File>
+              <FileName>task.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Src\task.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -378,6 +393,21 @@
               <FileName>imu.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Inc\imu.h</FilePath>
+            </File>
+            <File>
+              <FileName>hmc5883l.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Inc\hmc5883l.h</FilePath>
+            </File>
+            <File>
+              <FileName>pid.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Inc\pid.h</FilePath>
+            </File>
+            <File>
+              <FileName>task.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Inc\task.h</FilePath>
             </File>
           </Files>
         </Group>

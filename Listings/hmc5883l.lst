@@ -1,0 +1,87 @@
+C251 COMPILER V5.60.0,  hmc5883l                                                           18/07/25  14:54:04  PAGE 1   
+
+
+C251 COMPILER V5.60.0, COMPILATION OF MODULE hmc5883l
+OBJECT MODULE PLACED IN .\Objects\hmc5883l.obj
+COMPILER INVOKED BY: C:\Keil_v5\C251\BIN\C251.EXE Src\hmc5883l.c XSMALL BROWSE INCDIR(.\Libraries\libraries;.\Libraries\
+                    -seekfree_components;.\Libraries\seekfree_libraries;.\Libraries\seekfree_peripheral;.\Inc) DEBUG PRINT(.\Listings\hmc5883
+                    -l.lst) TABS(2) OBJECT(.\Objects\hmc5883l.obj) 
+
+stmt  level    source
+
+    1          #include "hmc5883l.h"
+    2          
+    3          #include <math.h>
+    4          
+    5          HMC5883L_Data hmc5883l_data = {0, 0, 0};
+    6          HMC5883L_Calibration hmc5883l_cali_data = {0, 0, 0, 0, 0, 0};
+    7          
+    8          void hmc5883l_init(void) {
+    9   1        uint8 dat[3] = {0x70, 0xA0, 0x00};
+   10   1        hmc5883l_write(HMC5883L_REG_ADDR_CONFA, &(dat[0]));
+   11   1        hmc5883l_write(HMC5883L_REG_ADDR_CONFB, &(dat[1]));
+   12   1        hmc5883l_write(HMC5883L_REG_ADDR_MODE, &(dat[2]));
+   13   1      }
+   14          
+   15          void hmc5883l_write(uint8 reg, uint8* dat) {
+   16   1        // HAL_I2C_Mem_Write(&hi2c1, HMC5883L_ADDR << 1, reg, 1, data, 1, HAL_MAX_DELAY);
+   17   1        iic_write_reg(HMC5883L_ADDR, reg, *dat);
+   18   1      }
+   19          
+   20          void hmc5883l_read(uint8 reg, uint8* dat) {
+   21   1        // HAL_I2C_Mem_Read(&hi2c1, HMC5883L_ADDR << 1, reg, 1, data, 1, HAL_MAX_DELAY);
+   22   1        iic_read_reg(HMC5883L_ADDR, reg, dat);
+   23   1      }
+   24          
+   25          bool hmc5883l_is_data_ready(void) {
+   26   1        uint8 status;
+   27   1        hmc5883l_read(HMC5883L_REG_ADDR_STATUS, &status);
+   28   1        return (status & 0x01);
+   29   1      }
+   30          
+   31          void hmc5883l_read_data(HMC5883L_Data* dat) {
+   32   1        uint8 buffer[6];
+   33   1        hmc5883l_read(HMC5883L_REG_ADDR_X_MSB, &(buffer[0]));
+   34   1        hmc5883l_read(HMC5883L_REG_ADDR_X_LSB, &(buffer[1]));
+   35   1        hmc5883l_read(HMC5883L_REG_ADDR_Y_MSB, &(buffer[2]));
+   36   1        hmc5883l_read(HMC5883L_REG_ADDR_Y_LSB, &(buffer[3]));
+   37   1        hmc5883l_read(HMC5883L_REG_ADDR_Z_MSB, &(buffer[4]));
+   38   1        hmc5883l_read(HMC5883L_REG_ADDR_Z_LSB, &(buffer[5]));
+   39   1        dat->x = (int16)(buffer[0] << 8 | buffer[1]);
+   40   1        dat->y = (int16)(buffer[2] << 8 | buffer[3]);
+   41   1        dat->z = (int16)(buffer[4] << 8 | buffer[5]);
+   42   1      }
+   43          
+   44          float hmc5883l_cal_xy_angle(HMC5883L_Data* dat, HMC5883L_Calibration* cali_data) {
+   45   1        return atan2(dat->y - cali_data->y_offset, dat->x - cali_data->x_offset) * 180.0 / M_PI + 180.0;
+*** ERROR C67 IN LINE 45 OF Src\hmc5883l.c: 'M_PI': undefined identifier
+   46   1      }
+   47          
+   48          void hmc5883l_calibrate(HMC5883L_Calibration* cali_data) {
+   49   1        cali_data->start_time = HAL_GetTick();
+*** WARNING C140 IN LINE 49 OF Src\hmc5883l.c: 'HAL_GetTick' undefined; assuming 'extern int HAL_GetTick()'
+   50   1        while (get_tick() - cali_data->start_time <= 10000) {
+   51   2          HMC5883L_Data dat;
+   52   2          hmc5883l_read_data(&dat);
+   53   2          if (dat.x < cali_data->x_min)
+   54   2            cali_data->x_min = dat.x;
+   55   2          if (dat.x > cali_data->x_max)
+C251 COMPILER V5.60.0,  hmc5883l                                                           18/07/25  14:54:04  PAGE 2   
+
+   56   2            cali_data->x_max = dat.x;
+   57   2          if (dat.y < cali_data->y_min)
+   58   2            cali_data->y_min = dat.y;
+   59   2          if (dat.y > cali_data->y_max)
+   60   2            cali_data->y_max = dat.y;
+   61   2          if (dat.z < cali_data->z_min)
+   62   2            cali_data->z_min = dat.z;
+   63   2          if (dat.z > cali_data->z_max)
+   64   2            cali_data->z_max = dat.z;
+   65   2          delay_ms(100);
+   66   2        }
+   67   1        cali_data->x_offset = (cali_data->x_max + cali_data->x_min) / 2;
+   68   1        cali_data->y_offset = (cali_data->y_max + cali_data->y_min) / 2;
+   69   1        cali_data->z_offset = (cali_data->z_max + cali_data->z_min) / 2;
+   70   1      }
+
+C251 COMPILATION COMPLETE.  1 WARNING(S),  1 ERROR(S)

@@ -1,4 +1,4 @@
-C251 COMPILER V5.60.0,  imu                                                                15/07/25  22:10:02  PAGE 1   
+C251 COMPILER V5.60.0,  imu                                                                18/07/25  14:54:04  PAGE 1   
 
 
 C251 COMPILER V5.60.0, COMPILATION OF MODULE imu
@@ -10,90 +10,91 @@ COMPILER INVOKED BY: C:\Keil_v5\C251\BIN\C251.EXE Src\imu.c XSMALL BROWSE INCDIR
 stmt  level    source
 
     1          #include "imu.h"
-    2          #include "SEEKFREE_IMU660RA.h"
-    3          #include "zf_delay.h"
-    4          
-    5          float acc_x, acc_y, acc_z; // accelerometer data
-    6          float gyro_x, gyro_y, gyro_z; // gyroscope data
-    7          
-    8          float acc_x_err, acc_y_err, acc_z_err; // accelerometer error
-    9          float gyro_x_err, gyro_y_err, gyro_z_err; // gyroscope error
-   10          
-   11          IMUData imu_data; 
-   12          
-   13          void imu660ra_cali(void) {
-   14   1        int sample_count = 1000;
-   15   1        float acc_x_sum = 0, acc_y_sum = 0, acc_z_sum = 0;
-   16   1        float gyro_x_est = 0, gyro_y_est = 0, gyro_z_est = 0;
-   17   1        float gyro_x_p = 1, gyro_y_p = 1, gyro_z_p = 1; // initial error covariance
-   18   1        float q = 0.01; // process noise covariance
-   19   1        float r = 0.1;  // measurement noise covariance
-   20   1        int i = 0;
-   21   1      
-   22   1        for (i = 0; i < sample_count; i++) {
-   23   2          imu660ra_get_acc();
-   24   2          imu660ra_get_gyro();
-   25   2      
-   26   2          // Accumulate accelerometer data
-   27   2          acc_x_sum += imu660ra_acc_transition(imu660ra_acc_x);
-   28   2          acc_y_sum += imu660ra_acc_transition(imu660ra_acc_y);
-   29   2          acc_z_sum += imu660ra_acc_transition(imu660ra_acc_z);
-   30   2      
-   31   2          // Kalman filter for gyroscope data
-   32   2      
-   33   2          // Update estimates for gyro_x
-   34   2          gyro_x_p += q;
-   35   2          gyro_x_est += (gyro_x_p / (gyro_x_p + r)) * (imu660ra_gyro_transition(imu660ra_gyro_x) - gyro_x_est);
-   36   2          gyro_x_p *= (1 - (gyro_x_p / (gyro_x_p + r)));
-   37   2      
-   38   2          // Update estimates for gyro_y
-   39   2          gyro_y_p += q;
-   40   2          gyro_y_est += (gyro_y_p / (gyro_y_p + r)) * (imu660ra_gyro_transition(imu660ra_gyro_y) - gyro_y_est);
-   41   2          gyro_y_p *= (1 - (gyro_y_p / (gyro_y_p + r)));
-   42   2      
-   43   2          // Update estimates for gyro_z
-   44   2          gyro_z_p += q;
-   45   2          gyro_z_est += (gyro_z_p / (gyro_z_p + r)) * (imu660ra_gyro_transition(imu660ra_gyro_z) - gyro_z_est);
-   46   2          gyro_z_p *= (1 - (gyro_z_p / (gyro_z_p + r)));
-   47   2      
-   48   2          delay_ms(10); // delay between samples
-   49   2        }
-   50   1      
-   51   1        // Calculate mean values for accelerometer errors
-   52   1        acc_x_err = acc_x_sum / sample_count;
-   53   1        acc_y_err = acc_y_sum / sample_count;
-   54   1        acc_z_err = acc_z_sum / sample_count;
-   55   1      
-   56   1        // Assign final estimates for gyroscope errors
-   57   1        gyro_x_err = gyro_x_est;
-C251 COMPILER V5.60.0,  imu                                                                15/07/25  22:10:02  PAGE 2   
+    2          
+    3          #include "SEEKFREE_IMU660RA.h"
+    4          #include "zf_delay.h"
+    5          
+    6          float acc_x, acc_y, acc_z;     // accelerometer data
+    7          float gyro_x, gyro_y, gyro_z;  // gyroscope data
+    8          
+    9          float acc_x_err, acc_y_err, acc_z_err;     // accelerometer error
+   10          float gyro_x_err, gyro_y_err, gyro_z_err;  // gyroscope error
+   11          
+   12          IMUData imu_data;
+   13          
+   14          void imu660ra_cali(void) {
+   15   1        int sample_count = 1000;
+   16   1        float acc_x_sum = 0, acc_y_sum = 0, acc_z_sum = 0;
+   17   1        float gyro_x_est = 0, gyro_y_est = 0, gyro_z_est = 0;
+   18   1        float gyro_x_p = 1, gyro_y_p = 1, gyro_z_p = 1;  // initial error covariance
+   19   1        float q = 0.01;                                  // process noise covariance
+   20   1        float r = 0.1;                                   // measurement noise covariance
+   21   1        int i = 0;
+   22   1      
+   23   1        for (i = 0; i < sample_count; i++) {
+   24   2          imu660ra_get_acc();
+   25   2          imu660ra_get_gyro();
+   26   2      
+   27   2          // Accumulate accelerometer data
+   28   2          acc_x_sum += imu660ra_acc_transition(imu660ra_acc_x);
+   29   2          acc_y_sum += imu660ra_acc_transition(imu660ra_acc_y);
+   30   2          acc_z_sum += imu660ra_acc_transition(imu660ra_acc_z);
+   31   2      
+   32   2          // Kalman filter for gyroscope data
+   33   2      
+   34   2          // Update estimates for gyro_x
+   35   2          gyro_x_p += q;
+   36   2          gyro_x_est += (gyro_x_p / (gyro_x_p + r)) * (imu660ra_gyro_transition(imu660ra_gyro_x) - gyro_x_est);
+   37   2          gyro_x_p *= (1 - (gyro_x_p / (gyro_x_p + r)));
+   38   2      
+   39   2          // Update estimates for gyro_y
+   40   2          gyro_y_p += q;
+   41   2          gyro_y_est += (gyro_y_p / (gyro_y_p + r)) * (imu660ra_gyro_transition(imu660ra_gyro_y) - gyro_y_est);
+   42   2          gyro_y_p *= (1 - (gyro_y_p / (gyro_y_p + r)));
+   43   2      
+   44   2          // Update estimates for gyro_z
+   45   2          gyro_z_p += q;
+   46   2          gyro_z_est += (gyro_z_p / (gyro_z_p + r)) * (imu660ra_gyro_transition(imu660ra_gyro_z) - gyro_z_est);
+   47   2          gyro_z_p *= (1 - (gyro_z_p / (gyro_z_p + r)));
+   48   2      
+   49   2          delay_ms(10);  // delay between samples
+   50   2        }
+   51   1      
+   52   1        // Calculate mean values for accelerometer errors
+   53   1        acc_x_err = acc_x_sum / sample_count;
+   54   1        acc_y_err = acc_y_sum / sample_count;
+   55   1        acc_z_err = acc_z_sum / sample_count;
+   56   1      
+   57   1        // Assign final estimates for gyroscope errors
+C251 COMPILER V5.60.0,  imu                                                                18/07/25  14:54:04  PAGE 2   
 
-   58   1        gyro_y_err = gyro_y_est;
-   59   1        gyro_z_err = gyro_z_est;
-   60   1      }
-   61          
-   62          void imu660ra_get_data(void) {
-   63   1        imu660ra_get_acc(); // get accelerometer data
-   64   1        imu660ra_get_gyro(); // get gyroscope data
-   65   1        acc_x = imu660ra_acc_transition(imu660ra_acc_x); // convert to physical data
-   66   1        acc_y = imu660ra_acc_transition(imu660ra_acc_y);
-   67   1        acc_z = imu660ra_acc_transition(imu660ra_acc_z);
-   68   1        gyro_x = imu660ra_gyro_transition(imu660ra_gyro_x); // convert to physical data
-   69   1        gyro_y = imu660ra_gyro_transition(imu660ra_gyro_y);
-   70   1        gyro_z = imu660ra_gyro_transition(imu660ra_gyro_z);
-   71   1      
-   72   1        imu_data.x_acc = acc_x - acc_x_err;
-   73   1        imu_data.y_acc = acc_y - acc_y_err;
-   74   1        imu_data.z_acc = acc_z - acc_z_err;
-   75   1        imu_data.x_gyro = gyro_x - gyro_x_err;
-   76   1        imu_data.y_gyro = gyro_y - gyro_y_err;
-   77   1        imu_data.z_gyro = gyro_z - gyro_z_err;
-   78   1      }
+   58   1        gyro_x_err = gyro_x_est;
+   59   1        gyro_y_err = gyro_y_est;
+   60   1        gyro_z_err = gyro_z_est;
+   61   1      }
+   62          
+   63          void imu660ra_get_data(IMUData *imu_data) {
+   64   1        imu660ra_get_acc();                               // get accelerometer data
+   65   1        imu660ra_get_gyro();                              // get gyroscope data
+   66   1        acc_x = imu660ra_acc_transition(imu660ra_acc_x);  // convert to physical data
+   67   1        acc_y = imu660ra_acc_transition(imu660ra_acc_y);
+   68   1        acc_z = imu660ra_acc_transition(imu660ra_acc_z);
+   69   1        gyro_x = imu660ra_gyro_transition(imu660ra_gyro_x);  // convert to physical data
+   70   1        gyro_y = imu660ra_gyro_transition(imu660ra_gyro_y);
+   71   1        gyro_z = imu660ra_gyro_transition(imu660ra_gyro_z);
+   72   1      
+   73   1        imu_data->x_acc = acc_x - acc_x_err;
+   74   1        imu_data->y_acc = acc_y - acc_y_err;
+   75   1        imu_data->z_acc = acc_z - acc_z_err;
+   76   1        imu_data->x_gyro = gyro_x - gyro_x_err;
+   77   1        imu_data->y_gyro = gyro_y - gyro_y_err;
+   78   1        imu_data->z_gyro = gyro_z - gyro_z_err;
+   79   1      }
 
 
 Module Information          Static   Overlayable
 ------------------------------------------------
-  code size            =       683     ------
+  code size            =       712     ------
   ecode size           =    ------     ------
   data size            =    ------     ------
   idata size           =    ------     ------
