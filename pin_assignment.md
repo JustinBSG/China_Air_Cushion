@@ -24,3 +24,7 @@
 - TAU1201
   - UART
   - UART1_RX_P30, UART1_TX_P31
+
+### Debug
+- UART
+  - UART2_RX_P10, UART2_TX_P11
