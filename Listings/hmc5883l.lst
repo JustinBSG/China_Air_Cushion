@@ -1,4 +1,4 @@
-C251 COMPILER V5.60.0,  hmc5883l                                                           18/07/25  15:18:49  PAGE 1   
+C251 COMPILER V5.60.0,  hmc5883l                                                           20/07/25  00:46:26  PAGE 1   
 
 
 C251 COMPILER V5.60.0, COMPILATION OF MODULE hmc5883l
@@ -66,7 +66,7 @@ stmt  level    source
    55   2          if (dat.x > cali_data->x_max)
    56   2            cali_data->x_max = dat.x;
    57   2          if (dat.y < cali_data->y_min)
-C251 COMPILER V5.60.0,  hmc5883l                                                           18/07/25  15:18:49  PAGE 2   
+C251 COMPILER V5.60.0,  hmc5883l                                                           20/07/25  00:46:26  PAGE 2   
 
    58   2            cali_data->y_min = dat.y;
    59   2          if (dat.y > cali_data->y_max)

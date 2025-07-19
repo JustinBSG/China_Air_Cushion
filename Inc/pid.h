@@ -39,13 +39,14 @@ typedef struct {
 
 void pid_reset(PIDController *pid);
 
-void pid_task1(PIDController *pid, IMUData *imu_data, Fan *fans);
+void pid_task1(PIDController *pid, Fan *fans);
 
-void pid_task2(PIDController *pid, IMUData *imu_data, Fan *fans);
+void pid_task2(PIDController *pid, Fan *fans);
 
-void pid_task3(PIDController *pid, IMUData *imu_data, Fan *fans);
+void pid_task3(PIDController *pid, Fan *fans);
 
-void pid_rotate(PIDController *pid, HMC5883L_Data *hmc5883l_data, HMC5883L_Calibration *hmc5883l_cali_data, Fan *fans, int degree);
+void pid_rotate(PIDController *pid, Fan *fans, int degree);
+
 extern PIDController pid_data;
 
 #endif  // __PID_H__

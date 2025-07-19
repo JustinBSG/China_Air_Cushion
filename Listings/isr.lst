@@ -1,4 +1,4 @@
-C251 COMPILER V5.60.0,  isr                                                                18/07/25  15:18:49  PAGE 1   
+C251 COMPILER V5.60.0,  isr                                                                20/07/25  00:46:26  PAGE 1   
 
 
 C251 COMPILER V5.60.0, COMPILATION OF MODULE isr
@@ -12,19 +12,19 @@ stmt  level    source
     1          ///******************************************************************************************************
              -***************
     2          // * COPYRIGHT NOTICE
-    3          // * Copyright (c) 2020,��ɿƼ�?
+    3          // * Copyright (c) 2020,��ɿƼ�?
     4          // * All rights reserved.
     5          // * ��������QQȺ��һȺ��179029047(����)  ��Ⱥ��244861897(���
              -���)  ��Ⱥ��824575535
     6          // *
     7          // * �����������ݰ�Ȩ������ɿƼ����У�δ�������
-             -�����������ҵ��;��?
+             -�����������ҵ��;��?
     8          // * ��ӭ��λʹ�ò������������޸�����ʱ���뱣����
-             -��ɿƼ��İ�Ȩ������?
+             -��ɿƼ��İ�Ȩ������?
     9          // *
    10          // * @file          isr
-   11          // * @company       �ɶ���ɿƼ����޹��?
-   12          // * @author        ��ɿƼ�?(QQ790875685)
+   11          // * @company       �ɶ���ɿƼ����޹��?
+   12          // * @author        ��ɿƼ�?(QQ790875685)
    13          // * @version       �鿴doc��version�ļ� �汾˵��
    14          // * @Software      MDK FOR C251 V5.60
    15          // * @Target core   STC32G12K128
@@ -66,7 +66,7 @@ stmt  level    source
    50   2          UART2_CLEAR_RX_FLAG;
    51   2          // �������ݼĴ���Ϊ��S2BUF
    52   2        }
-C251 COMPILER V5.60.0,  isr                                                                18/07/25  15:18:49  PAGE 2   
+C251 COMPILER V5.60.0,  isr                                                                20/07/25  00:46:26  PAGE 2   
 
    53   1      }
    54          
@@ -94,7 +94,7 @@ stmt  level    source
    76   2          // �������ݼĴ���Ϊ��S4BUF;
    77   2          if (wireless_module_uart_handler != NULL) {
    78   3            // �ú���Ϊ����ָ��
-   79   3            // �ٳ�ʼ������ģ���ʱ�����øú������?
+   79   3            // �ٳ�ʼ������ģ���ʱ�����øú������?
    80   3            wireless_module_uart_handler(S4BUF);
    81   3          }
    82   2        }
@@ -107,14 +107,14 @@ stmt  level    source
    89          void INT1_Isr() interrupt 2 {
    90   1      }
    91          void INT2_Isr() interrupt 10 {
-   92   1        INT2_CLEAR_FLAG;  // ����жϱ��?
+   92   1        INT2_CLEAR_FLAG;  // ����жϱ��?
    93   1      }
    94          void INT3_Isr() interrupt 11 {
-   95   1        INT3_CLEAR_FLAG;  // ����жϱ��?
+   95   1        INT3_CLEAR_FLAG;  // ����жϱ��?
    96   1      }
    97          
    98          void INT4_Isr() interrupt 16 {
-   99   1        INT4_CLEAR_FLAG;  // ����жϱ��?
+   99   1        INT4_CLEAR_FLAG;  // ����жϱ��?
   100   1      }
   101          
   102          void TM0_Isr() interrupt 1 {
@@ -123,47 +123,52 @@ stmt  level    source
   105          void TM1_Isr() interrupt 3 {
   106   1      }
   107          void TM2_Isr() interrupt 12 {
-  108   1        TIM2_CLEAR_FLAG;  // ����жϱ��?
+  108   1        TIM2_CLEAR_FLAG;  // ����жϱ��?
   109   1      }
   110          void TM3_Isr() interrupt 19 {
-  111   1        TIM3_CLEAR_FLAG;  // ����жϱ��?
+  111   1        TIM3_CLEAR_FLAG;  // ����жϱ��?
   112   1      }
   113          
-  114          void TM4_Isr() interrupt 20 {
-  115   1        TIM4_CLEAR_FLAG;  // ����жϱ��?
-  116   1        //  ccd_collect();   //CCD�ɼ�����
-  117   1      }
-  118          
-C251 COMPILER V5.60.0,  isr                                                                18/07/25  15:18:49  PAGE 3   
+  114          extern void pit_callback(void);
+  115          
+  116          void TM4_Isr() interrupt 20
+  117          {
+  118   1        TIM4_CLEAR_FLAG; //清除中断标志
+C251 COMPILER V5.60.0,  isr                                                                20/07/25  00:46:26  PAGE 3   
 
-  119          // void  INT0_Isr()  interrupt 0;
-  120          // void  TM0_Isr()   interrupt 1;
-  121          // void  INT1_Isr()  interrupt 2;
-  122          // void  TM1_Isr()   interrupt 3;
-  123          // void  UART1_Isr() interrupt 4;
-  124          // void  ADC_Isr()   interrupt 5;
-  125          // void  LVD_Isr()   interrupt 6;
-  126          // void  PCA_Isr()   interrupt 7;
-  127          // void  UART2_Isr() interrupt 8;
-  128          // void  SPI_Isr()   interrupt 9;
-  129          // void  INT2_Isr()  interrupt 10;
-  130          // void  INT3_Isr()  interrupt 11;
-  131          // void  TM2_Isr()   interrupt 12;
-  132          // void  INT4_Isr()  interrupt 16;
-  133          // void  UART3_Isr() interrupt 17;
-  134          // void  UART4_Isr() interrupt 18;
-  135          // void  TM3_Isr()   interrupt 19;
-  136          // void  TM4_Isr()   interrupt 20;
-  137          // void  CMP_Isr()   interrupt 21;
-  138          // void  I2C_Isr()   interrupt 24;
-  139          // void  USB_Isr()   interrupt 25;
-  140          // void  PWM1_Isr()  interrupt 26;
-  141          // void  PWM2_Isr()  interrupt 27;
+  119   1      //  ccd_collect();   //CCD采集数据
+  120   1      
+  121   1        pit_callback();
+  122   1      }
+  123          
+  124          // void  INT0_Isr()  interrupt 0;
+  125          // void  TM0_Isr()   interrupt 1;
+  126          // void  INT1_Isr()  interrupt 2;
+  127          // void  TM1_Isr()   interrupt 3;
+  128          // void  UART1_Isr() interrupt 4;
+  129          // void  ADC_Isr()   interrupt 5;
+  130          // void  LVD_Isr()   interrupt 6;
+  131          // void  PCA_Isr()   interrupt 7;
+  132          // void  UART2_Isr() interrupt 8;
+  133          // void  SPI_Isr()   interrupt 9;
+  134          // void  INT2_Isr()  interrupt 10;
+  135          // void  INT3_Isr()  interrupt 11;
+  136          // void  TM2_Isr()   interrupt 12;
+  137          // void  INT4_Isr()  interrupt 16;
+  138          // void  UART3_Isr() interrupt 17;
+  139          // void  UART4_Isr() interrupt 18;
+  140          // void  TM3_Isr()   interrupt 19;
+  141          // void  TM4_Isr()   interrupt 20;
+  142          // void  CMP_Isr()   interrupt 21;
+  143          // void  I2C_Isr()   interrupt 24;
+  144          // void  USB_Isr()   interrupt 25;
+  145          // void  PWM1_Isr()  interrupt 26;
+  146          // void  PWM2_Isr()  interrupt 27;
 
 
 Module Information          Static   Overlayable
 ------------------------------------------------
-  code size            =       273     ------
+  code size            =       316     ------
   ecode size           =    ------     ------
   data size            =    ------     ------
   idata size           =    ------     ------

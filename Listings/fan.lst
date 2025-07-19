@@ -1,4 +1,4 @@
-C251 COMPILER V5.60.0,  fan                                                                18/07/25  15:18:49  PAGE 1   
+C251 COMPILER V5.60.0,  fan                                                                20/07/25  00:46:25  PAGE 1   
 
 
 C251 COMPILER V5.60.0, COMPILATION OF MODULE fan
@@ -12,35 +12,42 @@ stmt  level    source
     1          #include "fan.h"
     2          
     3          // TODO: Add array of 6 fans
-    4          Fan fans[6];
+    4          Fan fans[4] = {{FAN_0_SPEED_PWM, PWMB_CH1_P20}, {FAN_0_SPEED_PWM, PWMB_CH2_P21}, {FAN_0_SPEED_PWM, PWMB_C
+             -H3_P22}, {FAN_0_SPEED_PWM, PWMB_CH4_P23}};
     5          Fan test_fan = {FAN_0_SPEED_PWM, PWMA_CH4P_P66};
     6          
     7          void initial_all_fan(void) {
-    8   1        pwm_init(PWMA_CH4P_P66, FAN_FREQ, 0);
-    9   1        pwm_duty(PWMA_CH4P_P66, FAN_0_SPEED_PWM);
-   10   1      }
-   11          
-   12          void fan_set_speed(Fan *fan, int speed) {
-   13   1        if (speed < FAN_0_SPEED_PWM)
-   14   1          speed = FAN_0_SPEED_PWM;
-   15   1        else if (speed > FAN_FULL_SPEED_PWM)
-   16   1          speed = FAN_FULL_SPEED_PWM;
-   17   1      
-   18   1        pwm_duty(fan->pin, speed);
-   19   1        fan->speed = speed;
-   20   1      }
+    8   1        pwm_init(PWMB_CH1_P20, FAN_FREQ, 0);
+    9   1        pwm_duty(PWMB_CH1_P20, FAN_0_SPEED_PWM);
+   10   1        pwm_init(PWMB_CH2_P21, FAN_FREQ, 0);
+   11   1        pwm_duty(PWMB_CH2_P21, FAN_0_SPEED_PWM);
+   12   1        pwm_init(PWMB_CH3_P22, FAN_FREQ, 0);
+   13   1        pwm_duty(PWMB_CH3_P22, FAN_0_SPEED_PWM);
+   14   1        pwm_init(PWMB_CH4_P23, FAN_FREQ, 0);
+   15   1        pwm_duty(PWMB_CH4_P23, FAN_0_SPEED_PWM);
+   16   1      }
+   17          
+   18          void fan_set_speed(Fan *fan, int speed) {
+   19   1        if (speed < FAN_0_SPEED_PWM)
+   20   1          speed = FAN_0_SPEED_PWM;
+   21   1        else if (speed > FAN_FULL_SPEED_PWM)
+   22   1          speed = FAN_FULL_SPEED_PWM;
+   23   1      
+   24   1        pwm_duty(fan->pin, speed);
+   25   1        fan->speed = speed;
+   26   1      }
 
 
 Module Information          Static   Overlayable
 ------------------------------------------------
-  code size            =       106     ------
+  code size            =       190     ------
   ecode size           =    ------     ------
   data size            =    ------     ------
   idata size           =    ------     ------
   pdata size           =    ------     ------
   xdata size           =    ------     ------
   xdata-const size     =    ------     ------
-  edata size           =        28          4
+  edata size           =        20          4
   bit size             =    ------     ------
   ebit size            =    ------     ------
   bitaddressable size  =    ------     ------
@@ -48,7 +55,7 @@ Module Information          Static   Overlayable
   far data size        =    ------     ------
   huge data size       =    ------     ------
   const size           =    ------     ------
-  hconst size          =         8     ------
+  hconst size          =        28     ------
 End of Module Information.
 
 

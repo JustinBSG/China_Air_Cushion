@@ -1,4 +1,4 @@
-C251 COMPILER V5.60.0,  task                                                               18/07/25  15:18:50  PAGE 1   
+C251 COMPILER V5.60.0,  task                                                               20/07/25  00:46:27  PAGE 1   
 
 
 C251 COMPILER V5.60.0, COMPILATION OF MODULE task
@@ -22,7 +22,7 @@ stmt  level    source
    11   2            // if () // maybe timer expired
    12   2            //   task1_stage = 1; // move to next stage
    13   2      
-   14   2            pid_task1(&pid_data, &imu_data, fans);
+   14   2            // pid_task1(&pid_data, &imu_data, fans);
    15   2            break;
    16   2          case 1:
    17   2            // rotate 180 degree
@@ -34,7 +34,7 @@ stmt  level    source
    23   2            // if () // maybe timer expired
    24   2            //   task1_stage = 3; // move to next stage
    25   2      
-   26   2            pid_task1(&pid_data, &imu_data, fans);
+   26   2            // pid_task1(&pid_data, &imu_data, fans);
    27   2          default:
    28   2            break;
    29   2        }
@@ -63,11 +63,11 @@ stmt  level    source
 
 Module Information          Static   Overlayable
 ------------------------------------------------
-  code size            =        36     ------
+  code size            =         3     ------
   ecode size           =    ------     ------
   data size            =    ------     ------
   idata size           =    ------     ------
-C251 COMPILER V5.60.0,  task                                                               18/07/25  15:18:50  PAGE 2   
+C251 COMPILER V5.60.0,  task                                                               20/07/25  00:46:27  PAGE 2   
 
   pdata size           =    ------     ------
   xdata size           =    ------     ------

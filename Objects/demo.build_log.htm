@@ -28,18 +28,19 @@ compiling fan.c...
 compiling isr.c...
 compiling tick.c...
 compiling imu.c...
+Src\imu.c(187): warning C47: 'result': unreferenced local variable
+Src\imu.c(187): warning C47: 'xhalf': unreferenced local variable
+Src\imu.c(188): warning C47: 'i': unreferenced local variable
 compiling hmc5883l.c...
 compiling pid.c...
-Src\pid.c(64): warning C47: 'imu_data': unreferenced parameter
-Src\pid.c(64): warning C47: 'fans': unreferenced parameter
-Src\pid.c(70): warning C47: 'pid': unreferenced parameter
-Src\pid.c(70): warning C47: 'imu_data': unreferenced parameter
-Src\pid.c(70): warning C47: 'fans': unreferenced parameter
-Src\pid.c(74): warning C47: 'pid': unreferenced parameter
-Src\pid.c(74): warning C47: 'hmc5883l_data': unreferenced parameter
-Src\pid.c(74): warning C47: 'hmc5883l_cali_data': unreferenced parameter
-Src\pid.c(74): warning C47: 'fans': unreferenced parameter
-Src\pid.c(74): warning C47: 'degree': unreferenced parameter
+Src\pid.c(15): warning C47: 'pid': unreferenced parameter
+Src\pid.c(15): warning C47: 'fans': unreferenced parameter
+Src\pid.c(65): warning C47: 'fans': unreferenced parameter
+Src\pid.c(71): warning C47: 'pid': unreferenced parameter
+Src\pid.c(71): warning C47: 'fans': unreferenced parameter
+Src\pid.c(75): warning C47: 'pid': unreferenced parameter
+Src\pid.c(75): warning C47: 'fans': unreferenced parameter
+Src\pid.c(75): warning C47: 'degree': unreferenced parameter
 compiling task.c...
 compiling board.c...
 compiling common.c...
@@ -77,7 +78,25 @@ compiling seekfree_assistant.c...
 compiling seekfree_assistant_inface.c...
 linking...
 *** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
-    NAME:    tick_init/tick
+    NAME:    imu963ra_get_roll/imu
+*** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
+    NAME:    imu963ra_get_quaternion/imu
+*** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
+    NAME:    imu963ra_reset_attitude/imu
+*** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
+    NAME:    imu963ra_get_yaw/imu
+*** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
+    NAME:    imu963ra_mag_to_gauss/imu
+*** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
+    NAME:    imu963ra_calibrate/imu
+*** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
+    NAME:    imu963ra_init_custom/imu
+*** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
+    NAME:    imu963ra_get_pitch/imu
+*** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
+    NAME:    imu963ra_simple_attitude_update/imu
+*** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
+    NAME:    imu963ra_sqrt/imu
 *** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
     NAME:    hmc5883l_calibrate/hmc5883l
 *** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
@@ -86,6 +105,8 @@ linking...
     NAME:    hmc5883l_is_data_ready/hmc5883l
 *** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
     NAME:    hmc5883l_cal_xy_angle/hmc5883l
+*** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
+    NAME:    pid_task1/pid
 *** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
     NAME:    pid_task2/pid
 *** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
@@ -165,6 +186,8 @@ linking...
 *** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
     NAME:    send_nak/zf_iic
 *** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
+    NAME:    iic_read_reg_bytes/zf_iic
+*** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
     NAME:    lcd_showuint16/SEEKFREE_18TFT
 *** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
     NAME:    lcd_showint32_simspi/SEEKFREE_18TFT
@@ -233,19 +256,21 @@ linking...
 *** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
     NAME:    icm20602_get_gyro/SEEKFREE_ICM20602
 *** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
-    NAME:    imu963ra_acc_transition/SEEKFREE_IMU963RA
+    NAME:    imu660ra_get_gyro/SEEKFREE_IMU660RA
 *** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
-    NAME:    imu963ra_get_gyro/SEEKFREE_IMU963RA
+    NAME:    imu660ra_gyro_transition/SEEKFREE_IMU660RA
+*** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
+    NAME:    imu660ra_init/SEEKFREE_IMU660RA
+*** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
+    NAME:    imu660ra_get_acc/SEEKFREE_IMU660RA
+*** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
+    NAME:    imu660ra_acc_transition/SEEKFREE_IMU660RA
+*** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
+    NAME:    imu963ra_acc_transition/SEEKFREE_IMU963RA
 *** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
     NAME:    imu963ra_mag_transition/SEEKFREE_IMU963RA
 *** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
     NAME:    imu963ra_gyro_transition/SEEKFREE_IMU963RA
-*** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
-    NAME:    imu963ra_init/SEEKFREE_IMU963RA
-*** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
-    NAME:    imu963ra_get_acc/SEEKFREE_IMU963RA
-*** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
-    NAME:    imu963ra_get_mag/SEEKFREE_IMU963RA
 *** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
     NAME:    ips114_showuint8_simspi/SEEKFREE_IPS114_SPI
 *** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
@@ -362,9 +387,9 @@ linking...
     NAME:    seekfree_assistant_data_analysis/seekfree_assistant
 *** WARNING L57: UNCALLED FUNCTION, IGNORED FOR OVERLAY PROCESS
     NAME:    seekfree_assistant_camera_send/seekfree_assistant
-Program Size: data=8.0 edata+hdata=2708 xdata=1637 const=1340 code=57344
+Program Size: data=8.0 edata+hdata=2769 xdata=1634 const=1611 code=59045
 creating hex file from ".\Objects\demo"...
-".\Objects\demo" - 0 Error(s), 153 Warning(s).
+".\Objects\demo" - 0 Error(s), 166 Warning(s).
 Build Time Elapsed:  00:00:06
 </pre>
 </body>

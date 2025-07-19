@@ -12,63 +12,64 @@ void pid_reset(PIDController *pid) {
   pid->last_time = 0;
 }
 
-void pid_task1(PIDController *pid, IMUData *imu_data, Fan *fans) {
-  float error = 0, p_term = 0, i_term = 0, d_term = 0, output = 0;
-  int left_fan_speed = 0, right_fan_speed = 0;
-  if (pid->kp != PID_TASK1_KP)
-    pid->kp = PID_TASK1_KP;
-  if (pid->ki != PID_TASK1_KI)
-    pid->ki = PID_TASK1_KI;
-  if (pid->kd != PID_TASK1_KD)
-    pid->kd = PID_TASK1_KD;
-  if (pid->setpoint != 0.0f)
-    pid->setpoint = 0.0f;
+void pid_task1(PIDController *pid, Fan *fans) {
+  // float error = 0, p_term = 0, i_term = 0, d_term = 0, output = 0;
+  // int left_fan_speed = 0, right_fan_speed = 0;
+  // if (pid->kp != PID_TASK1_KP)
+  //   pid->kp = PID_TASK1_KP;
+  // if (pid->ki != PID_TASK1_KI)
+  //   pid->ki = PID_TASK1_KI;
+  // if (pid->kd != PID_TASK1_KD)
+  //   pid->kd = PID_TASK1_KD;
+  // if (pid->setpoint != 0.0f)
+  //   pid->setpoint = 0.0f;
 
+  // if (get_tick() - pid->last_time < PID_MIN_INTERVAL) {
+  //   return;
+  // }
+  // pid->last_time = get_tick();
+
+  // // imu660ra_get_data(imu_data);
+  // imu963ra_get_data(imu_data);
+
+  // // need to think again
+  // error = pid->setpoint - imu_data->z_gyro;
+
+  // p_term = pid->kp * error;
+
+  // pid->integral += error * PID_MIN_INTERVAL;
+  // i_term = pid->ki * pid->integral;
+
+  // d_term = pid->kd * (error - pid->prev_error) / PID_MIN_INTERVAL;
+  // pid->prev_error = error;
+
+  // output = p_term + i_term + d_term;
+
+  // left_fan_speed = FAN_MID_SPEED_PWM - (int)output;
+  // right_fan_speed = FAN_MID_SPEED_PWM + (int)output;
+
+  // if (left_fan_speed < FAN_0_SPEED_PWM)
+  //   left_fan_speed = FAN_0_SPEED_PWM;
+  // else if (left_fan_speed > FAN_FULL_SPEED_PWM)
+  //   left_fan_speed = FAN_FULL_SPEED_PWM;
+
+  // if (right_fan_speed < FAN_0_SPEED_PWM)
+  //   right_fan_speed = FAN_0_SPEED_PWM;
+  // else if (right_fan_speed > FAN_FULL_SPEED_PWM)
+  //   right_fan_speed = FAN_FULL_SPEED_PWM;
+
+  // fan_set_speed(&fans[2], left_fan_speed);   // Left fan
+  // fan_set_speed(&fans[3], right_fan_speed);  // Right fan
+}
+
+void pid_task2(PIDController *pid, Fan *fans) {
   if (get_tick() - pid->last_time < PID_MIN_INTERVAL) {
     return;
   }
-  pid->last_time = get_tick();
-
-  imu660ra_get_data(imu_data);
-
-  // need to think again
-  error = pid->setpoint - imu_data->z_gyro;
-
-  p_term = pid->kp * error;
-
-  pid->integral += error * PID_MIN_INTERVAL;
-  i_term = pid->ki * pid->integral;
-
-  d_term = pid->kd * (error - pid->prev_error) / PID_MIN_INTERVAL;
-  pid->prev_error = error;
-
-  output = p_term + i_term + d_term;
-
-  left_fan_speed = FAN_MID_SPEED_PWM - (int)output;
-  right_fan_speed = FAN_MID_SPEED_PWM + (int)output;
-
-  if (left_fan_speed < FAN_0_SPEED_PWM)
-    left_fan_speed = FAN_0_SPEED_PWM;
-  else if (left_fan_speed > FAN_FULL_SPEED_PWM)
-    left_fan_speed = FAN_FULL_SPEED_PWM;
-
-  if (right_fan_speed < FAN_0_SPEED_PWM)
-    right_fan_speed = FAN_0_SPEED_PWM;
-  else if (right_fan_speed > FAN_FULL_SPEED_PWM)
-    right_fan_speed = FAN_FULL_SPEED_PWM;
-
-  fan_set_speed(&fans[2], left_fan_speed);   // Left fan
-  fan_set_speed(&fans[3], right_fan_speed);  // Right fan
 }
 
-void pid_task2(PIDController *pid, IMUData *imu_data, Fan *fans) {
-  if (get_tick() - pid->last_time < PID_MIN_INTERVAL) {
-    return;
-  }
-}
-
-void pid_task3(PIDController *pid, IMUData *imu_data, Fan *fans) {
+void pid_task3(PIDController *pid, Fan *fans) {
   // give up
 }
 
-void pid_rotate(PIDController *pid, HMC5883L_Data *hmc5883l_data, HMC5883L_Calibration *hmc5883l_cali_data, Fan *fans, int degree) {}
+void pid_rotate(PIDController *pid, Fan *fans, int degree) {}

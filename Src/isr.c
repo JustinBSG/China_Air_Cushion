@@ -1,15 +1,15 @@
 ///*********************************************************************************************************************
 // * COPYRIGHT NOTICE
-// * Copyright (c) 2020,��ɿƼ�?
+// * Copyright (c) 2020,��ɿƼ�?
 // * All rights reserved.
 // * ��������QQȺ��һȺ��179029047(����)  ��Ⱥ��244861897(����)  ��Ⱥ��824575535
 // *
-// * �����������ݰ�Ȩ������ɿƼ����У�δ����������������ҵ��;��?
-// * ��ӭ��λʹ�ò������������޸�����ʱ���뱣����ɿƼ��İ�Ȩ������?
+// * �����������ݰ�Ȩ������ɿƼ����У�δ����������������ҵ��;��?
+// * ��ӭ��λʹ�ò������������޸�����ʱ���뱣����ɿƼ��İ�Ȩ������?
 // *
 // * @file       		isr
-// * @company	   		�ɶ���ɿƼ����޹��?
-// * @author     		��ɿƼ�?(QQ790875685)
+// * @company	   		�ɶ���ɿƼ����޹��?
+// * @author     		��ɿƼ�?(QQ790875685)
 // * @version    		�鿴doc��version�ļ� �汾˵��
 // * @Software 			MDK FOR C251 V5.60
 // * @Target core		STC32G12K128
@@ -76,7 +76,7 @@ void UART4_Isr() interrupt 18 {
     // �������ݼĴ���Ϊ��S4BUF;
     if (wireless_module_uart_handler != NULL) {
       // �ú���Ϊ����ָ��
-      // �ٳ�ʼ������ģ���ʱ�����øú������?
+      // �ٳ�ʼ������ģ���ʱ�����øú������?
       wireless_module_uart_handler(S4BUF);
     }
   }
@@ -89,14 +89,14 @@ void INT0_Isr() interrupt 0 {
 void INT1_Isr() interrupt 2 {
 }
 void INT2_Isr() interrupt 10 {
-  INT2_CLEAR_FLAG;  // ����жϱ��?
+  INT2_CLEAR_FLAG;  // ����жϱ��?
 }
 void INT3_Isr() interrupt 11 {
-  INT3_CLEAR_FLAG;  // ����жϱ��?
+  INT3_CLEAR_FLAG;  // ����жϱ��?
 }
 
 void INT4_Isr() interrupt 16 {
-  INT4_CLEAR_FLAG;  // ����жϱ��?
+  INT4_CLEAR_FLAG;  // ����жϱ��?
 }
 
 void TM0_Isr() interrupt 1 {
@@ -105,15 +105,20 @@ void TM0_Isr() interrupt 1 {
 void TM1_Isr() interrupt 3 {
 }
 void TM2_Isr() interrupt 12 {
-  TIM2_CLEAR_FLAG;  // ����жϱ��?
+  TIM2_CLEAR_FLAG;  // ����жϱ��?
 }
 void TM3_Isr() interrupt 19 {
-  TIM3_CLEAR_FLAG;  // ����жϱ��?
+  TIM3_CLEAR_FLAG;  // ����жϱ��?
 }
 
-void TM4_Isr() interrupt 20 {
-  TIM4_CLEAR_FLAG;  // ����жϱ��?
-  //	ccd_collect();	 //CCD�ɼ�����
+extern void pit_callback(void);
+
+void TM4_Isr() interrupt 20
+{
+	TIM4_CLEAR_FLAG; //清除中断标志
+//	ccd_collect();	 //CCD采集数据
+
+	pit_callback();
 }
 
 // void  INT0_Isr()  interrupt 0;

@@ -11,7 +11,7 @@ void task1(void) {
       // if () // maybe timer expired
       //   task1_stage = 1; // move to next stage
 
-      pid_task1(&pid_data, &imu_data, fans);
+      // pid_task1(&pid_data, &imu_data, fans);
       break;
     case 1:
       // rotate 180 degree
@@ -23,7 +23,7 @@ void task1(void) {
       // if () // maybe timer expired
       //   task1_stage = 3; // move to next stage
 
-      pid_task1(&pid_data, &imu_data, fans);
+      // pid_task1(&pid_data, &imu_data, fans);
     default:
       break;
   }

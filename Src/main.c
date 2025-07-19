@@ -2,7 +2,6 @@
 
 #include "Libraries/seekfree_peripheral/headfile.h"
 #include "fan.h"
-#include "hmc5883l.h"
 #include "imu.h"
 #include "pid.h"
 #include "task.h"
@@ -14,57 +13,87 @@ uint8 key4_status = 1;  // set default button status
 uint8 key4_previous_status;
 char buf[256];
 uint8 count = 0;
-uint8 test_i2c[3];
+uint8 stage = 0;
+int time_stamp = 0;
 
 void main() {
+  tick_init();  // init tick
   board_init();  // init board
   iic_init(IIC_4, IIC4_SCL_P32, IIC4_SDA_P33, 10);
   uart_init(UART_2, UART2_RX_P10, UART2_TX_P11, 115200, TIM_2);
 
   BUZZER = 0;               // set default output for buzzer
   gpio_mode(P6_7, GPO_PP);  // set pin p6.7 as push pull mode for large current (>20mA), note all pin default to be standard gpio
-
-  // pwm_init(TEST_PWM, 50, 0);
-  // pwm_duty(TEST_PWM, PWM_DUTY_MAX*0.05*2);
+  
   initial_all_fan();
   // fan_set_speed(&test_fan, FAN_0_SPEED_PWM);
 
-  imu660ra_init();
-  imu660ra_cali();
-
-  // test imu cali
-  sprintf(buf, "acc_x_err: %.2f, acc_y_err: %.2f, acc_z_err: %.2f, gyro_x_err: %.2f, gyro_y_err: %.2f, gyro_z_err: %.2f\n",
-          acc_x_err, acc_y_err, acc_z_err, gyro_x_err, gyro_y_err, gyro_z_err);
-  uart_putbuff(UART_2, buf, strlen(buf));
+  // while(imu963ra_init_custom()) {
+  //   delay_ms(500);
+  //   printf("imu963ra init try again.\r\n");
+  // }
+  // printf("Starting IMU calibration - keep device still...\r\n");
+  // delay_ms(2000);
+  // imu963ra_calibrate();
+  
+  // 启动定时器中断（5ms周期，200Hz采样率）
+  pit_timer_ms(TIM_4, 5);
 
   while (1) {
-    // test gpio
-    // key4_previous_status = key4_status;
-    // key4_status = KEY4_PIN; // read button
+    printf("get_tick(): %d time_stamp: %d\r\n", get_tick(), time_stamp);
+    if (get_tick() - time_stamp > 1000) {
+      // printf("get_tick(): %d time_stamp: %d\r\n", get_tick(), time_stamp);
+      time_stamp = get_tick();
+      stage++;
+      if (stage == 4)
+        stage = 0;
+    }
 
-    // if (key4_previous_status && !key4_status) // capured falling edge
-    // {
-    //   delay_ms(10); // debounce
-    //   key4_status = KEY4_PIN;
+    switch (stage) {
+      case 0:
+        fan_set_speed(&fans[0], FAN_MID_SPEED_PWM);
+        fan_set_speed(&fans[1], FAN_0_SPEED_PWM);
+        fan_set_speed(&fans[2], FAN_0_SPEED_PWM);
+        fan_set_speed(&fans[3], FAN_0_SPEED_PWM);
+        break;
+      case 1:
+        fan_set_speed(&fans[0], FAN_0_SPEED_PWM);
+        fan_set_speed(&fans[1], FAN_MID_SPEED_PWM);
+        fan_set_speed(&fans[2], FAN_0_SPEED_PWM);
+        fan_set_speed(&fans[3], FAN_0_SPEED_PWM);
+        break;
+      case 2:
+        fan_set_speed(&fans[0], FAN_0_SPEED_PWM);
+        fan_set_speed(&fans[1], FAN_0_SPEED_PWM);
+        fan_set_speed(&fans[2], FAN_MID_SPEED_PWM);
+        fan_set_speed(&fans[3], FAN_0_SPEED_PWM);
+        break;
+      case 3:
+        fan_set_speed(&fans[0], FAN_0_SPEED_PWM);
+        fan_set_speed(&fans[1], FAN_0_SPEED_PWM);
+        fan_set_speed(&fans[2], FAN_0_SPEED_PWM);
+        fan_set_speed(&fans[3], FAN_MID_SPEED_PWM);
+        break;
+      default:
+        break;
+    }
 
-    //   if (!key4_status)
-    //   {
-    //     BUZZER = !BUZZER; // turn on/off the buzzer
-    //   }
-    // }
-
-    // test i2c and hmc reading
-    iic_read_reg_bytes(HMC5883L_ADDR, HMC5883L_REG_ADDR_IDA, test_i2c, 3);
-    sprintf(buf, "HMC5883L ID: %02X%02X%02X\n", test_i2c[0], test_i2c[1], test_i2c[2]);
-    uart_putbuff(UART_2, buf, strlen(buf));
-    // 0x48 0x34 0x33
-
-    // test imu reading
-    // sprintf(buf, "acc_x: %.2f g, acc_y: %.2f g, acc_z: %.2f g, gyro_x: %.2f °/s, gyro_y: %.2f °/s, gyro_z: %.2f °/s\n",
-    //     imu_data.x_acc, imu_data.y_acc, imu_data.z_acc, imu_data.x_gyro, imu_data.y_gyro, imu_data.z_gyro);
-    // uart_putbuff(UART_2, buf, strlen(buf));
-
-    // test pid control
-    delay_ms(1000);
+    // printf("Starting IMU calibration - keep device still...\r\n");
+    // printf("Roll: %.2f°, Pitch: %.2f°, Yaw: %.2f°\r\n", 
+    //        imu963ra_get_roll(), imu963ra_get_pitch(), imu963ra_get_yaw());
+    // // 显示原始IMU数据
+    // printf("Acc: X=%d, Y=%d, Z=%d\r\n", 
+    //        imu963ra_data.accX, imu963ra_data.accY, imu963ra_data.accZ);
+    // printf("Gyro: X=%d, Y=%d, Z=%d\r\n", 
+    //        imu963ra_data.gyroX, imu963ra_data.gyroY, imu963ra_data.gyroZ);
+    // printf("Mag: X=%d, Y=%d, Z=%d\r\n", 
+    //        imu963ra_data.magX, imu963ra_data.magY, imu963ra_data.magZ);
+    // printf("---\r\n");
   }
+}
+
+void pit_callback(void)
+{
+	// 使用封装的IMU处理函数
+	imu963ra_process();
 }
