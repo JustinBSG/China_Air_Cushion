@@ -19,11 +19,11 @@ int time_stamp = 0;
 int test = 0;
 
 void main() {
-  tick_init();  // init tick
+  tick_init();   // init tick
   board_init();  // init board
   iic_init(IIC_4, IIC4_SCL_P32, IIC4_SDA_P33, 10);
   uart_init(UART_2, UART2_RX_P10, UART2_TX_P11, 115200, TIM_2);
-  
+
   initial_all_fan();
 
   // while(imu963ra_init_custom()) {
@@ -33,7 +33,7 @@ void main() {
   // printf("Starting IMU calibration - keep device still...\r\n");
   // delay_ms(2000);
   // imu963ra_calibrate();
-  
+
   // 启动定时器中断（5ms周期，200Hz采样率）
   pit_timer_ms(TIM_4, 5);
 
@@ -81,21 +81,20 @@ void main() {
     //     break;
     // }
 
-    // printf("Roll: %.2f°, Pitch: %.2f°, Yaw: %.2f°\r\n", 
+    // printf("Roll: %.2f°, Pitch: %.2f°, Yaw: %.2f°\r\n",
     //        imu963ra_get_roll(), imu963ra_get_pitch(), imu963ra_get_yaw());
     // // 显示原始IMU数据
-    // printf("Acc: X=%d, Y=%d, Z=%d\r\n", 
+    // printf("Acc: X=%d, Y=%d, Z=%d\r\n",
     //        imu963ra_data.accX, imu963ra_data.accY, imu963ra_data.accZ);
-    // printf("Gyro: X=%d, Y=%d, Z=%d\r\n", 
+    // printf("Gyro: X=%d, Y=%d, Z=%d\r\n",
     //        imu963ra_data.gyroX, imu963ra_data.gyroY, imu963ra_data.gyroZ);
-    // printf("Mag: X=%d, Y=%d, Z=%d\r\n", 
+    // printf("Mag: X=%d, Y=%d, Z=%d\r\n",
     //        imu963ra_data.magX, imu963ra_data.magY, imu963ra_data.magZ);
     // printf("---\r\n");
   }
 }
 
-void pit_callback(void)
-{
-	// 使用封装的IMU处理函数
-	imu963ra_process();
+void pit_callback(void) {
+  // 使用封装的IMU处理函数
+  imu963ra_process();
 }

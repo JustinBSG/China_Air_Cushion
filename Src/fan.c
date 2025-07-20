@@ -18,9 +18,9 @@ void initial_all_fan(void) {
 void fan_set_speed(Fan *fan, uint32 speed) {
   if (speed < 0)
     speed = 0;
-  else if (speed > FAN_FULL_SPEED) 
+  else if (speed > FAN_FULL_SPEED)
     speed = FAN_FULL_SPEED;
-  
+
   fan->speed = FAN_MIN_SPEED_PWM + (speed * (FAN_MAX_SPEED_PWM - FAN_MIN_SPEED_PWM) / FAN_MAX_SPEED_PWM);  // Scale to PWM duty cycle
   pwm_duty(fan->pin, fan->speed);
 }

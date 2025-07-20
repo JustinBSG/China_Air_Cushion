@@ -1,15 +1,15 @@
 ///*********************************************************************************************************************
 // * COPYRIGHT NOTICE
-// * Copyright (c) 2020,��ɿƼ�?
+// * Copyright (c) 2020,��ɿƼ�??
 // * All rights reserved.
 // * ��������QQȺ��һȺ��179029047(����)  ��Ⱥ��244861897(����)  ��Ⱥ��824575535
 // *
-// * �����������ݰ�Ȩ������ɿƼ����У�δ����������������ҵ��;��?
-// * ��ӭ��λʹ�ò������������޸�����ʱ���뱣����ɿƼ��İ�Ȩ������?
+// * �����������ݰ�Ȩ������ɿƼ����У�δ����������������ҵ��;��??
+// * ��ӭ��λʹ�ò������������޸�����ʱ���뱣����ɿƼ��İ�Ȩ������??
 // *
 // * @file       		isr
 // * @company	   		�ɶ���ɿƼ����޹��?
-// * @author     		��ɿƼ�?(QQ790875685)
+// * @author     		��ɿƼ�??(QQ790875685)
 // * @version    		�鿴doc��version�ļ� �汾˵��
 // * @Software 			MDK FOR C251 V5.60
 // * @Target core		STC32G12K128
@@ -113,12 +113,11 @@ void TM3_Isr() interrupt 19 {
 
 extern void pit_callback(void);
 
-void TM4_Isr() interrupt 20
-{
-	TIM4_CLEAR_FLAG; //清除中断标志
-//	ccd_collect();	 //CCD采集数据
+void TM4_Isr() interrupt 20 {
+  TIM4_CLEAR_FLAG;  // 清除中断标志
+  //	ccd_collect();	 //CCD采集数据
 
-	pit_callback();
+  pit_callback();
 }
 
 // void  INT0_Isr()  interrupt 0;

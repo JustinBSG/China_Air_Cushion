@@ -1,8 +1,9 @@
 #ifndef __IMU_H__
 #define __IMU_H__
 
-#include "headfile.h"
 #include <math.h>
+
+#include "headfile.h"
 
 // 确保数学常量定义
 #ifndef M_PI
@@ -86,14 +87,14 @@ void imu963ra_process(void);
 void imu963ra_simple_attitude_update(void);
 
 // 配置参数
-#define IMU963RA_SAMPLE_RATE_HZ     200.0f      // 采样频率
-#define IMU963RA_SAMPLE_TIME        (1.0f / IMU963RA_SAMPLE_RATE_HZ)
-#define IMU963RA_CALIBRATION_COUNT  500         // 校准采样次数
-#define IMU963RA_FILTER_ALPHA       0.98f       // 互补滤波器系数
-#define IMU963RA_GYRO_NOISE_THRESHOLD 5         // 陀螺仪噪声阈值
+#define IMU963RA_SAMPLE_RATE_HZ 200.0f  // 采样频率
+#define IMU963RA_SAMPLE_TIME (1.0f / IMU963RA_SAMPLE_RATE_HZ)
+#define IMU963RA_CALIBRATION_COUNT 500   // 校准采样次数
+#define IMU963RA_FILTER_ALPHA 0.98f      // 互补滤波器系数
+#define IMU963RA_GYRO_NOISE_THRESHOLD 5  // 陀螺仪噪声阈值
 
 // PID控制参数
-#define IMU963RA_KP                 2.0f
-#define IMU963RA_KI                 0.005f
+#define IMU963RA_KP 2.0f
+#define IMU963RA_KI 0.005f
 
-#endif // __IMU_H__
+#endif  // __IMU_H__
