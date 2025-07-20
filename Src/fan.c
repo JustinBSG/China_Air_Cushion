@@ -24,33 +24,3 @@ void fan_set_speed(Fan *fan, uint32 speed) {
   fan->speed = FAN_MIN_SPEED_PWM + (speed * (FAN_MAX_SPEED_PWM - FAN_MIN_SPEED_PWM) / FAN_MAX_SPEED_PWM);  // Scale to PWM duty cycle
   pwm_duty(fan->pin, fan->speed);
 }
-
-/**
- * Motor_Init(&LeftBackMotor, PWMA_CH1P_P20, 500, 1000);
- * 
- * void Motor_Init(Motor *motor, PWMCH_enum pwmch, uint32 min_duty, uint32 max_duty) {
-    motor->pwmch = pwmch;
-    motor->min_duty = min_duty;
-    motor->max_duty = max_duty;
-    motor->current_duty = min_duty; // Initialize to minimum duty cycle
-    pwm_init(motor->pwmch, 50, motor->current_duty); // Initialize PWM with 50Hz and current duty cycle
-}
-
-void Motor_Control(Motor* motor, uint32 speed){
-    if (speed < 0)
-    {
-        speed = 0; // Ensure speed is not negative
-    }
-    else if (speed > MOTOR_CONTROL_RANGE)
-    {
-        speed = MOTOR_CONTROL_RANGE; // Cap speed to maximum control range
-    }
-
-    // Map speed to duty cycle range
-    motor->current_duty = motor->min_duty + (speed * (motor->max_duty - motor->min_duty)) / MOTOR_CONTROL_RANGE;
-
-    // Update PWM duty cycle
-    pwm_duty(motor->pwmch, motor->current_duty);
-}
- * 
- */
