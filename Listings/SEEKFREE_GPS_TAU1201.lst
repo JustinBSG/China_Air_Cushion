@@ -1,4 +1,4 @@
-C251 COMPILER V5.60.0,  SEEKFREE_GPS_TAU1201                                               20/07/25  00:46:30  PAGE 1   
+C251 COMPILER V5.60.0,  SEEKFREE_GPS_TAU1201                                               20/07/25  04:10:08  PAGE 1   
 
 
 C251 COMPILER V5.60.0, COMPILATION OF MODULE SEEKFREE_GPS_TAU1201
@@ -66,7 +66,7 @@ stmt  level    source
    51          
    52          #include "SEEKFREE_GPS_TAU1201.h"
    53          
-C251 COMPILER V5.60.0,  SEEKFREE_GPS_TAU1201                                               20/07/25  00:46:30  PAGE 2   
+C251 COMPILER V5.60.0,  SEEKFREE_GPS_TAU1201                                               20/07/25  04:10:08  PAGE 2   
 
    54          #pragma warning disable = 183
    55          
@@ -134,7 +134,7 @@ stmt  level    source
              -------------
   113          static int get_int_number (char *s)
   114          {
-C251 COMPILER V5.60.0,  SEEKFREE_GPS_TAU1201                                               20/07/25  00:46:30  PAGE 3   
+C251 COMPILER V5.60.0,  SEEKFREE_GPS_TAU1201                                               20/07/25  04:10:08  PAGE 3   
 
   115   1          char buf[10];
   116   1          uint8 i = 0;
@@ -202,7 +202,7 @@ stmt  level    source
   173          // ±¸×¢ÐÅÏ¢     ÄÚ²¿Ê¹ÓÃ
   174          //-------------------------------------------------------------------------------------------------------
              -------------
-C251 COMPILER V5.60.0,  SEEKFREE_GPS_TAU1201                                               20/07/25  00:46:30  PAGE 4   
+C251 COMPILER V5.60.0,  SEEKFREE_GPS_TAU1201                                               20/07/25  04:10:08  PAGE 4   
 
   175          static void utc_to_btc (gps_time_struct *time)
   176          {
@@ -270,7 +270,7 @@ stmt  level    source
   235   1      
   236   1          state = buf[get_parameter_index(2, buf)];
   237   1      
-C251 COMPILER V5.60.0,  SEEKFREE_GPS_TAU1201                                               20/07/25  00:46:30  PAGE 5   
+C251 COMPILER V5.60.0,  SEEKFREE_GPS_TAU1201                                               20/07/25  04:10:08  PAGE 5   
 
   238   1          gps->state = 0;
   239   1          if('A' == state)                                                            // Èç¹ûÊý¾ÝÓÐÐ§ Ôò½âÎöÊý¾
@@ -338,7 +338,7 @@ stmt  level    source
   298   1      
   299   1          if(',' != state)
   300   1          {
-C251 COMPILER V5.60.0,  SEEKFREE_GPS_TAU1201                                               20/07/25  00:46:30  PAGE 6   
+C251 COMPILER V5.60.0,  SEEKFREE_GPS_TAU1201                                               20/07/25  04:10:08  PAGE 6   
 
   301   2              gps->satellite_used = (uint8)get_int_number(&buf[get_parameter_index(7, buf)]);
   302   2              gps->height         = get_float_number(&buf[get_parameter_index(9, buf)]) + get_float_number(&buf
@@ -406,7 +406,7 @@ stmt  level    source
   358   1        double angle = 0;
   359   1        
   360   1        
-C251 COMPILER V5.60.0,  SEEKFREE_GPS_TAU1201                                               20/07/25  00:46:30  PAGE 7   
+C251 COMPILER V5.60.0,  SEEKFREE_GPS_TAU1201                                               20/07/25  04:10:08  PAGE 7   
 
   361   1          latitude1 = ANGLE_TO_RAD(latitude1);
   362   1          latitude2 = ANGLE_TO_RAD(latitude2);
@@ -474,7 +474,7 @@ stmt  level    source
   422   3                  gps_rmc_state = GPS_STATE_PARSING;
   423   3                  strncpy((char *)&check_buffer[2], strchr((const char *)gps_rmc_buffer, '*') + 1, 2);
   424   3                  bbc_xor_origin = (uint8)func_str_to_hex((char *)check_buffer);
-C251 COMPILER V5.60.0,  SEEKFREE_GPS_TAU1201                                               20/07/25  00:46:30  PAGE 8   
+C251 COMPILER V5.60.0,  SEEKFREE_GPS_TAU1201                                               20/07/25  04:10:08  PAGE 8   
 
   425   3                  for(bbc_xor_calculation = gps_rmc_buffer[1], data_len = 2; '*' != gps_rmc_buffer[data_len]; d
              -ata_len ++)
@@ -542,7 +542,7 @@ stmt  level    source
   484   3                  temp_length = 6;
   485   3                  fifo_read_buffer(&gps_tau1201_receiver_fifo, temp_gps, &temp_length, FIFO_READ_ONLY);
   486   3      
-C251 COMPILER V5.60.0,  SEEKFREE_GPS_TAU1201                                               20/07/25  00:46:30  PAGE 9   
+C251 COMPILER V5.60.0,  SEEKFREE_GPS_TAU1201                                               20/07/25  04:10:08  PAGE 9   
 
   487   3                  // ¸ù¾Ý²»Í¬ÀàÐÍ½«Êý¾Ý¿½±´µ½²»Í¬µÄ»º³åÇø
   488   3                  if(0 == strncmp((char *)&temp_gps[3], "RMC", 3))
@@ -610,7 +610,7 @@ stmt  level    source
              -  
   544   1        
   545   1          uart_putbuff(GPS_TAU1201_UART, (uint8 *)set_rate, sizeof(set_rate));       // ÉèÖÃGPS¸üÐÂËÙÂÊÎª10hz È
-C251 COMPILER V5.60.0,  SEEKFREE_GPS_TAU1201                                               20/07/25  00:46:30  PAGE 10  
+C251 COMPILER V5.60.0,  SEEKFREE_GPS_TAU1201                                               20/07/25  04:10:08  PAGE 10  
 
              -ç¹û²»µ÷ÓÃ´ËÓï¾äÔòÄ¬ÈÏÎª1hz
   546   1          delay_ms(200);

@@ -1,4 +1,4 @@
-C251 COMPILER V5.60.0,  fan                                                                20/07/25  00:46:25  PAGE 1   
+C251 COMPILER V5.60.0,  fan                                                                20/07/25  04:10:03  PAGE 1   
 
 
 C251 COMPILER V5.60.0, COMPILATION OF MODULE fan
@@ -12,42 +12,76 @@ stmt  level    source
     1          #include "fan.h"
     2          
     3          // TODO: Add array of 6 fans
-    4          Fan fans[4] = {{FAN_0_SPEED_PWM, PWMB_CH1_P20}, {FAN_0_SPEED_PWM, PWMB_CH2_P21}, {FAN_0_SPEED_PWM, PWMB_C
-             -H3_P22}, {FAN_0_SPEED_PWM, PWMB_CH4_P23}};
-    5          Fan test_fan = {FAN_0_SPEED_PWM, PWMA_CH4P_P66};
+    4          Fan fans[4] = {{FAN_0_SPEED, PWMB_CH1_P20}, {FAN_0_SPEED, PWMB_CH2_P21}, {FAN_0_SPEED, PWMB_CH4_P23}, {FA
+             -N_0_SPEED, PWMB_CH3_P22}};
+    5          Fan test_fan = {FAN_0_SPEED, PWMA_CH4P_P66};
     6          
     7          void initial_all_fan(void) {
-    8   1        pwm_init(PWMB_CH1_P20, FAN_FREQ, 0);
-    9   1        pwm_duty(PWMB_CH1_P20, FAN_0_SPEED_PWM);
-   10   1        pwm_init(PWMB_CH2_P21, FAN_FREQ, 0);
-   11   1        pwm_duty(PWMB_CH2_P21, FAN_0_SPEED_PWM);
-   12   1        pwm_init(PWMB_CH3_P22, FAN_FREQ, 0);
-   13   1        pwm_duty(PWMB_CH3_P22, FAN_0_SPEED_PWM);
-   14   1        pwm_init(PWMB_CH4_P23, FAN_FREQ, 0);
-   15   1        pwm_duty(PWMB_CH4_P23, FAN_0_SPEED_PWM);
+    8   1        pwm_init(PWMB_CH1_P20, FAN_FREQ, FAN_MIN_SPEED_PWM);
+    9   1        pwm_duty(PWMB_CH1_P20, FAN_0_SPEED);
+   10   1        pwm_init(PWMB_CH2_P21, FAN_FREQ, FAN_MIN_SPEED_PWM);
+   11   1        pwm_duty(PWMB_CH2_P21, FAN_0_SPEED);
+   12   1        pwm_init(PWMB_CH3_P22, FAN_FREQ, FAN_MIN_SPEED_PWM);
+   13   1        pwm_duty(PWMB_CH3_P22, FAN_0_SPEED);
+   14   1        pwm_init(PWMB_CH4_P23, FAN_FREQ, FAN_MIN_SPEED_PWM);
+   15   1        pwm_duty(PWMB_CH4_P23, FAN_0_SPEED);
    16   1      }
    17          
-   18          void fan_set_speed(Fan *fan, int speed) {
-   19   1        if (speed < FAN_0_SPEED_PWM)
-   20   1          speed = FAN_0_SPEED_PWM;
-   21   1        else if (speed > FAN_FULL_SPEED_PWM)
-   22   1          speed = FAN_FULL_SPEED_PWM;
-   23   1      
-   24   1        pwm_duty(fan->pin, speed);
-   25   1        fan->speed = speed;
+   18          void fan_set_speed(Fan *fan, uint32 speed) {
+   19   1        if (speed < 0)
+   20   1          speed = 0;
+   21   1        else if (speed > FAN_FULL_SPEED) 
+   22   1          speed = FAN_FULL_SPEED;
+   23   1        
+   24   1        fan->speed = FAN_MIN_SPEED_PWM + (speed * (FAN_MAX_SPEED_PWM - FAN_MIN_SPEED_PWM) / FAN_MAX_SPEED_PWM);
+             -  // Scale to PWM duty cycle
+   25   1        pwm_duty(fan->pin, fan->speed);
    26   1      }
+   27          
+   28          /**
+   29           * Motor_Init(&LeftBackMotor, PWMA_CH1P_P20, 500, 1000);
+   30           * 
+   31           * void Motor_Init(Motor *motor, PWMCH_enum pwmch, uint32 min_duty, uint32 max_duty) {
+   32              motor->pwmch = pwmch;
+   33              motor->min_duty = min_duty;
+   34              motor->max_duty = max_duty;
+   35              motor->current_duty = min_duty; // Initialize to minimum duty cycle
+   36              pwm_init(motor->pwmch, 50, motor->current_duty); // Initialize PWM with 50Hz and current duty cycle
+   37          }
+   38          
+   39          void Motor_Control(Motor* motor, uint32 speed){
+   40              if (speed < 0)
+   41              {
+   42                  speed = 0; // Ensure speed is not negative
+   43              }
+   44              else if (speed > MOTOR_CONTROL_RANGE)
+   45              {
+   46                  speed = MOTOR_CONTROL_RANGE; // Cap speed to maximum control range
+   47              }
+   48          
+   49              // Map speed to duty cycle range
+   50              motor->current_duty = motor->min_duty + (speed * (motor->max_duty - motor->min_duty)) / MOTOR_CONTROL
+             -_RANGE;
+   51          
+   52              // Update PWM duty cycle
+   53              pwm_duty(motor->pwmch, motor->current_duty);
+   54          }
+C251 COMPILER V5.60.0,  fan                                                                20/07/25  04:10:03  PAGE 2   
+
+   55           * 
+   56           */
 
 
 Module Information          Static   Overlayable
 ------------------------------------------------
-  code size            =       190     ------
+  code size            =       173     ------
   ecode size           =    ------     ------
   data size            =    ------     ------
   idata size           =    ------     ------
   pdata size           =    ------     ------
   xdata size           =    ------     ------
   xdata-const size     =    ------     ------
-  edata size           =        20          4
+  edata size           =        20     ------
   bit size             =    ------     ------
   ebit size            =    ------     ------
   bitaddressable size  =    ------     ------

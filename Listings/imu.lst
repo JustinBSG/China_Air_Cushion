@@ -1,4 +1,4 @@
-C251 COMPILER V5.60.0,  imu                                                                20/07/25  00:46:26  PAGE 1   
+C251 COMPILER V5.60.0,  imu                                                                20/07/25  04:10:03  PAGE 1   
 
 
 C251 COMPILER V5.60.0, COMPILATION OF MODULE imu
@@ -66,7 +66,7 @@ stmt  level    source
    55   2          }
    56   1          
    57   1          return result;
-C251 COMPILER V5.60.0,  imu                                                                20/07/25  00:46:26  PAGE 2   
+C251 COMPILER V5.60.0,  imu                                                                20/07/25  04:10:03  PAGE 2   
 
    58   1      }
    59          
@@ -134,7 +134,7 @@ stmt  level    source
   121   1          
   122   1          imu963ra_calibration.calibrated = 1;
   123   1      
-C251 COMPILER V5.60.0,  imu                                                                20/07/25  00:46:26  PAGE 3   
+C251 COMPILER V5.60.0,  imu                                                                20/07/25  04:10:03  PAGE 3   
 
   124   1          // sprintf(buf, "IMU calibration completed\r\n");
   125   1          // uart_putbuff(UART_2, buf, strlen(buf));
@@ -202,7 +202,7 @@ stmt  level    source
   187   1          float result, xhalf;
   188   1          int i;
   189   1          
-C251 COMPILER V5.60.0,  imu                                                                20/07/25  00:46:26  PAGE 4   
+C251 COMPILER V5.60.0,  imu                                                                20/07/25  04:10:03  PAGE 4   
 
   190   1          if (x <= 0.0f) return 0.0f;
   191   1          
@@ -270,7 +270,7 @@ stmt  level    source
   250   1          // 转换为物理单位
   251   1          ax = imu963ra_acc_to_g(imu963ra_data_filtered.accX);
   252   1          ay = imu963ra_acc_to_g(imu963ra_data_filtered.accY);
-C251 COMPILER V5.60.0,  imu                                                                20/07/25  00:46:26  PAGE 5   
+C251 COMPILER V5.60.0,  imu                                                                20/07/25  04:10:03  PAGE 5   
 
   253   1          az = imu963ra_acc_to_g(imu963ra_data_filtered.accZ);
   254   1          
@@ -338,7 +338,7 @@ stmt  level    source
   307   1                                      1.0f - 2.0f * (imu963ra_quaternion.q1 * imu963ra_quaternion.q1 + imu963ra
              -_quaternion.q2 * imu963ra_quaternion.q2)) * RAD_TO_DEG;
   308   1          
-C251 COMPILER V5.60.0,  imu                                                                20/07/25  00:46:26  PAGE 6   
+C251 COMPILER V5.60.0,  imu                                                                20/07/25  04:10:03  PAGE 6   
 
   309   1          // Pitch (绕Y轴旋转) - 使用安全的asin
   310   1          sin_pitch_temp = 2.0f * (imu963ra_quaternion.q0 * imu963ra_quaternion.q2 - imu963ra_quaternion.q3 * i
@@ -406,7 +406,7 @@ stmt  level    source
   369   1          integral_error_x = 0.0f;
   370   1          integral_error_y = 0.0f;
   371   1          integral_error_z = 0.0f;
-C251 COMPILER V5.60.0,  imu                                                                20/07/25  00:46:26  PAGE 7   
+C251 COMPILER V5.60.0,  imu                                                                20/07/25  04:10:03  PAGE 7   
 
   372   1      }
   373          
@@ -474,7 +474,7 @@ stmt  level    source
   435   1          if (!init_flag) return;
   436   1          
   437   1          // 转换为物理单位
-C251 COMPILER V5.60.0,  imu                                                                20/07/25  00:46:26  PAGE 8   
+C251 COMPILER V5.60.0,  imu                                                                20/07/25  04:10:03  PAGE 8   
 
   438   1          ax = imu963ra_acc_to_g(imu963ra_data_filtered.accX);
   439   1          ay = imu963ra_acc_to_g(imu963ra_data_filtered.accY);

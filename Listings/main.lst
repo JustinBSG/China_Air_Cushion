@@ -1,4 +1,4 @@
-C251 COMPILER V5.60.0,  main                                                               20/07/25  00:46:25  PAGE 1   
+C251 COMPILER V5.60.0,  main                                                               20/07/25  04:10:02  PAGE 1   
 
 
 C251 COMPILER V5.60.0, COMPILATION OF MODULE main
@@ -25,112 +25,121 @@ stmt  level    source
    14          char buf[256];
    15          uint8 count = 0;
    16          uint8 stage = 0;
-   17          int time_stamp = 0;
-   18          
-   19          void main() {
-   20   1        tick_init();  // init tick
-   21   1        board_init();  // init board
-   22   1        iic_init(IIC_4, IIC4_SCL_P32, IIC4_SDA_P33, 10);
-   23   1        uart_init(UART_2, UART2_RX_P10, UART2_TX_P11, 115200, TIM_2);
-   24   1      
-   25   1        BUZZER = 0;               // set default output for buzzer
-   26   1        gpio_mode(P6_7, GPO_PP);  // set pin p6.7 as push pull mode for large current (>20mA), note all pin def
+   17          int current_tick = 0;
+   18          int time_stamp = 0;
+   19          int test = 0;
+   20          
+   21          void main() {
+   22   1        tick_init();  // init tick
+   23   1        board_init();  // init board
+   24   1        iic_init(IIC_4, IIC4_SCL_P32, IIC4_SDA_P33, 10);
+   25   1        uart_init(UART_2, UART2_RX_P10, UART2_TX_P11, 115200, TIM_2);
+   26   1      
+   27   1        BUZZER = 0;               // set default output for buzzer
+   28   1        gpio_mode(P6_7, GPO_PP);  // set pin p6.7 as push pull mode for large current (>20mA), note all pin def
              -ault to be standard gpio
-   27   1        
-   28   1        initial_all_fan();
-   29   1        // fan_set_speed(&test_fan, FAN_0_SPEED_PWM);
-   30   1      
-   31   1        // while(imu963ra_init_custom()) {
-   32   1        //   delay_ms(500);
-   33   1        //   printf("imu963ra init try again.\r\n");
-   34   1        // }
-   35   1        // printf("Starting IMU calibration - keep device still...\r\n");
-   36   1        // delay_ms(2000);
-   37   1        // imu963ra_calibrate();
-   38   1        
-   39   1        // 启动定时器中断（5ms周期，200Hz采样率）
-   40   1        pit_timer_ms(TIM_4, 5);
-   41   1      
-   42   1        while (1) {
-   43   2          printf("get_tick(): %d time_stamp: %d\r\n", get_tick(), time_stamp);
-   44   2          if (get_tick() - time_stamp > 5000) {
-   45   3            // printf("get_tick(): %d time_stamp: %d\r\n", get_tick(), time_stamp);
-   46   3            time_stamp = get_tick();
-   47   3            stage++;
-   48   3            if (stage == 4)
-   49   3              stage = 0;
-   50   3          }
-   51   2      
-   52   2          switch (stage) {
-   53   3            case 0:
-   54   3              fan_set_speed(&fans[0], FAN_MID_SPEED_PWM);
-   55   3              fan_set_speed(&fans[1], FAN_0_SPEED_PWM);
-   56   3              fan_set_speed(&fans[2], FAN_0_SPEED_PWM);
-C251 COMPILER V5.60.0,  main                                                               20/07/25  00:46:25  PAGE 2   
+   29   1        
+   30   1        initial_all_fan();
+   31   1        fan_set_speed(&fans[3], FAN_MID_SPEED/2);
+   32   1      
+   33   1        // while(imu963ra_init_custom()) {
+   34   1        //   delay_ms(500);
+   35   1        //   printf("imu963ra init try again.\r\n");
+   36   1        // }
+   37   1        // printf("Starting IMU calibration - keep device still...\r\n");
+   38   1        // delay_ms(2000);
+   39   1        // imu963ra_calibrate();
+   40   1        
+   41   1        // 启动定时器中断（5ms周期，200Hz采样率）
+   42   1        pit_timer_ms(TIM_4, 5);
+   43   1      
+   44   1        while (1) {
+   45   2          // delay_ms(5);  // delay 5ms
+   46   2          // current_tick = get_tick();
+   47   2          // if (current_tick - time_stamp > 5000) {
+   48   2          //   printf("current_tick: %d, time_stamp: %d\r\n", current_tick, time_stamp);
+   49   2          //   time_stamp = current_tick;
+   50   2          //   stage++;
+   51   2          //   if (stage == 4)
+   52   2          //     stage = 0;
+   53   2          // }
+   54   2      
+   55   2          // switch (stage) {
+   56   2          //   case 0:
+C251 COMPILER V5.60.0,  main                                                               20/07/25  04:10:02  PAGE 2   
 
-   57   3              fan_set_speed(&fans[3], FAN_0_SPEED_PWM);
-   58   3              break;
-   59   3            case 1:
-   60   3              fan_set_speed(&fans[0], FAN_0_SPEED_PWM);
-   61   3              fan_set_speed(&fans[1], FAN_MID_SPEED_PWM);
-   62   3              fan_set_speed(&fans[2], FAN_0_SPEED_PWM);
-   63   3              fan_set_speed(&fans[3], FAN_0_SPEED_PWM);
-   64   3              break;
-   65   3            case 2:
-   66   3              fan_set_speed(&fans[0], FAN_0_SPEED_PWM);
-   67   3              fan_set_speed(&fans[1], FAN_0_SPEED_PWM);
-   68   3              fan_set_speed(&fans[2], FAN_MID_SPEED_PWM);
-   69   3              fan_set_speed(&fans[3], FAN_0_SPEED_PWM);
-   70   3              break;
-   71   3            case 3:
-   72   3              fan_set_speed(&fans[0], FAN_0_SPEED_PWM);
-   73   3              fan_set_speed(&fans[1], FAN_0_SPEED_PWM);
-   74   3              fan_set_speed(&fans[2], FAN_0_SPEED_PWM);
-   75   3              fan_set_speed(&fans[3], FAN_MID_SPEED_PWM);
-   76   3              break;
-   77   3            default:
-   78   3              break;
-   79   3          }
-   80   2      
-   81   2          // printf("Starting IMU calibration - keep device still...\r\n");
-   82   2          // printf("Roll: %.2f°, Pitch: %.2f°, Yaw: %.2f°\r\n", 
-   83   2          //        imu963ra_get_roll(), imu963ra_get_pitch(), imu963ra_get_yaw());
-   84   2          // // 显示原始IMU数据
-   85   2          // printf("Acc: X=%d, Y=%d, Z=%d\r\n", 
-   86   2          //        imu963ra_data.accX, imu963ra_data.accY, imu963ra_data.accZ);
-   87   2          // printf("Gyro: X=%d, Y=%d, Z=%d\r\n", 
-   88   2          //        imu963ra_data.gyroX, imu963ra_data.gyroY, imu963ra_data.gyroZ);
-   89   2          // printf("Mag: X=%d, Y=%d, Z=%d\r\n", 
-   90   2          //        imu963ra_data.magX, imu963ra_data.magY, imu963ra_data.magZ);
-   91   2          // printf("---\r\n");
-   92   2        }
-   93   1      }
-   94          
-   95          void pit_callback(void)
-   96          {
-   97   1        // 使用封装的IMU处理函数
-   98   1        imu963ra_process();
-   99   1      }
+   57   2          //     printf("stage: %d\r\n", stage);
+   58   2          //     fan_set_speed(&fans[0], FAN_MID_SPEED/2);
+   59   2          //     fan_set_speed(&fans[1], FAN_0_SPEED);
+   60   2          //     fan_set_speed(&fans[2], FAN_0_SPEED);
+   61   2          //     fan_set_speed(&fans[3], FAN_0_SPEED);
+   62   2          //     break;
+   63   2          //   case 1:
+   64   2          //     printf("stage: %d\r\n", stage);
+   65   2          //     fan_set_speed(&fans[0], FAN_0_SPEED);
+   66   2          //     fan_set_speed(&fans[1], FAN_MID_SPEED/2);
+   67   2          //     fan_set_speed(&fans[2], FAN_0_SPEED);
+   68   2          //     fan_set_speed(&fans[3], FAN_0_SPEED);
+   69   2          //     break;
+   70   2          //   case 2:
+   71   2          //     printf("stage: %d\r\n", stage);
+   72   2          //     fan_set_speed(&fans[0], FAN_0_SPEED);
+   73   2          //     fan_set_speed(&fans[1], FAN_0_SPEED);
+   74   2          //     fan_set_speed(&fans[2], FAN_MID_SPEED/2);
+   75   2          //     fan_set_speed(&fans[3], FAN_0_SPEED);
+   76   2          //     break;
+   77   2          //   case 3:
+   78   2          //     printf("stage: %d\r\n", stage);
+   79   2          //     fan_set_speed(&fans[0], FAN_0_SPEED);
+   80   2          //     fan_set_speed(&fans[1], FAN_0_SPEED);
+   81   2          //     fan_set_speed(&fans[2], FAN_0_SPEED);
+   82   2          //     fan_set_speed(&fans[3], FAN_MID_SPEED/2);
+   83   2          //     break;
+   84   2          //   default:
+   85   2          //     break;
+   86   2          // }
+   87   2      
+   88   2          // printf("Starting IMU calibration - keep device still...\r\n");
+   89   2          // printf("Roll: %.2f°, Pitch: %.2f°, Yaw: %.2f°\r\n", 
+   90   2          //        imu963ra_get_roll(), imu963ra_get_pitch(), imu963ra_get_yaw());
+   91   2          // // 显示原始IMU数据
+   92   2          // printf("Acc: X=%d, Y=%d, Z=%d\r\n", 
+   93   2          //        imu963ra_data.accX, imu963ra_data.accY, imu963ra_data.accZ);
+   94   2          // printf("Gyro: X=%d, Y=%d, Z=%d\r\n", 
+   95   2          //        imu963ra_data.gyroX, imu963ra_data.gyroY, imu963ra_data.gyroZ);
+   96   2          // printf("Mag: X=%d, Y=%d, Z=%d\r\n", 
+   97   2          //        imu963ra_data.magX, imu963ra_data.magY, imu963ra_data.magZ);
+   98   2          // printf("---\r\n");
+   99   2        }
+  100   1      }
+  101          
+  102          void pit_callback(void)
+  103          {
+  104   1        // 使用封装的IMU处理函数
+  105   1        imu963ra_process();
+  106   1      }
 
 
 Module Information          Static   Overlayable
 ------------------------------------------------
-  code size            =       319     ------
+  code size            =       103     ------
   ecode size           =    ------     ------
   data size            =    ------     ------
   idata size           =    ------     ------
   pdata size           =    ------     ------
   xdata size           =    ------     ------
   xdata-const size     =    ------     ------
-  edata size           =       262     ------
+  edata size           =       266     ------
   bit size             =    ------     ------
   ebit size            =    ------     ------
   bitaddressable size  =    ------     ------
   ebitaddressable size =    ------     ------
   far data size        =    ------     ------
+C251 COMPILER V5.60.0,  main                                                               20/07/25  04:10:02  PAGE 3   
+
   huge data size       =    ------     ------
   const size           =    ------     ------
-  hconst size          =        53     ------
+  hconst size          =        33     ------
 End of Module Information.
 
 
